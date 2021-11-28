@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_weight_units">
+        <item>@string/kg</item>
+        <item>@string/lbs</item>
+    </string-array>
+
+    <string-array name="array_height_units">
+        <item>@string/centimeters</item>
+        <item>@string/ft</item>
+    </string-array>
+
+    <string name="kg">Kg</string>
+    <string name="lbs">Lbs</string>
+    <string name="centimeters">Cm</string>
+    <string name="ft">Ft</string>
+</resources>

@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">solevarnya</string>
+    <string name="app_name">BMI Calculator</string>
+    <string name="weight">Вес</string>
+    <string name="weight_not_set">Вес не задан</string>
+    <string name="height">Рост</string>
+    <string name="height_not_set">Рост не задан</string>
+    <string name="calculate">Рассчитать</string>
+    <string name="your_weight_and_height">Параметры</string>
+    <string name="result">Результат</string>
+    <string name="unknown">Неизвестно</string>
 </resources>
