@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">solevarnya</string>
+    <string name="app_name">Decision Maker</string>
+    <string name="hint_press_button">Нажмите кнопку \'Подсказать\'</string>
+    <string name="btn_generate">Подсказать</string>
+    <string name="generated_count_placeholder">Подсказок дано: %1$d</string>
 </resources>
