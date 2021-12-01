@@ -3,4 +3,30 @@
     <string name="hint_press_button">Нажмите кнопку \'Подсказать\'</string>
     <string name="btn_generate">Подсказать</string>
     <string name="generated_count_placeholder">Подсказок дано: %1$d</string>
+
+    <string-array name="advice_first_halfs">
+        <item>Вам нужно</item>
+        <item>Советую вам</item>
+        <item>Это будет страшной ошибкой -</item>
+        <item>Нужно немедленно</item>
+        <item>Это очень рискованно -</item>
+        <item>Невозможно</item>
+        <item>Лучше всего тайком</item>
+        <item>Чувствую, что вы хотите</item>
+        <item>Вы сами знаете, что следует</item>
+        <item>Повелеваю</item>
+    </string-array>
+
+    <string-array name="advice_second_halfs">
+        <item>заняться этим прямо сейчас</item>
+        <item>eщё раз всё обдумать</item>
+        <item>предусмотреть путь для отступления</item>
+        <item>прыгнуть в омут с головой</item>
+        <item>поторопиться с принятием решения</item>
+        <item>забыть об этом</item>
+        <item>сделать, но никому не рассказывать</item>
+        <item>рассказать об этом другу и послушать его совета</item>
+        <item>послушать меня и сделать наоборот</item>
+        <item>перестать спрашивать у бесполезного меня и принять решение самостоятельно. В КОИ-ТО ВЕКИ!</item>
+    </string-array>
 </resources>

@@ -10,24 +10,25 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_counter"
         style="@style/TextAppearance.MaterialComponents.Body1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:paddingVertical="10dp"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/iv_ball"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_result"
+        app:layout_constraintBottom_toTopOf="@+id/btn_generate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:text="@string/generated_count_placeholder" />
 
     <ImageView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_result"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/iv_ball"
         android:layout_width="0dp"
-        android:layout_height="350dp"
-        android:src="@drawable/ball"
-        app:layout_constraintBottom_toTopOf="@id/btn_generate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
+        android:layout_height="0dp"
+        android:src="@drawable/ball" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_result"
@@ -37,10 +38,10 @@
         android:hint="@string/hint_press_button"
         android:paddingVertical="12dp"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@id/btn_generate"
+        app:layout_constraintTop_toBottomOf="@id/iv_ball"
+        app:layout_constraintBottom_toTopOf="@+id/tv_counter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_ball" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_generate"
@@ -49,6 +50,5 @@
         android:layout_marginBottom="24dp"
         android:text="@string/btn_generate"
         app:layout_constraintBottom_toBottomOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

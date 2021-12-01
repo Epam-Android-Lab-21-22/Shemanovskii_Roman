@@ -6,7 +6,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.beleavemebe.solevarnya.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private val randomPhrase by randomPhrases()
+    private val randomPhrase: String by randomPhrases()
     private val binding by viewBinding(ActivityMainBinding::bind)
 
     private var counter: Int = 0

@@ -1,16 +1,14 @@
 package com.beleavemebe.solevarnya
 
+import android.content.Context
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-class RandomPhraseProperty<T> : ReadOnlyProperty<T, String>{
+class RandomPhraseProperty<T : Context> : ReadOnlyProperty<T, String>{
     override fun getValue(
         thisRef: T,
         property: KProperty<*>
-    ): String =
-        PhraseRepository.run {
-            "$firstWord $secondWord"
-        }
+    ): String = PhraseRepository.getPhrase(thisRef)
 }
 
-fun <T> randomPhrases() = RandomPhraseProperty<T>()
+fun <T : Context> randomPhrases() = RandomPhraseProperty<T>()
