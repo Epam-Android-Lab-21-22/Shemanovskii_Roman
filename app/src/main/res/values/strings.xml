@@ -8,4 +8,14 @@
     <string name="your_weight_and_height">Параметры</string>
     <string name="result">Результат</string>
     <string name="unknown">Неизвестно</string>
+    <string name="bmi_1">Выраженный дефицит массы тела.\nНеобходима срочная консультация специалиста.</string>
+    <string name="bmi_2">Недостаточная (дефицит) масса тела.\nНеобходима консультация специалиста.</string>
+    <string name="bmi_3">Норма.</string>
+    <string name="bmi_4">Избыточная масса тела (предожирение).\nНеобходима консультация специалиста.</string>
+    <string name="bmi_5">Ожирение первой степени.\nНеобходима консультация специалиста.</string>
+    <string name="bmi_6">Ожирение второй степени.\nНеобходима консультация специалиста.</string>
+    <string name="bmi_7">Ожирение третьей степени (морбидное).\nНеобходима срочная консультация специалиста.</string>
+    <string name="description">Описание</string>
+    <string name="bmi_value">Значение BMI</string>
+    <string name="invalid_input">Некорректные данные</string>
 </resources>

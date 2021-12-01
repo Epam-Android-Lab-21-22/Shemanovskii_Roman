@@ -1,6 +1,5 @@
 package com.beleavemebe.solevarnya
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -54,9 +53,10 @@ class MainActivity : AppCompatActivity() {
 
             mockLoading()
             recalculateBMI(weightNotNull, heightNotNull)
-            handler.postDelayed(750L) {
-                endLoading()
-            }
+            Handler(Looper.getMainLooper())
+                .postDelayed(750L) {
+                    endLoading()
+                }
         }
     }
 
@@ -64,51 +64,46 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             progressIndicator.isIndeterminate = true
             progressIndicator.isVisible = true
+            btnCalculate.isEnabled = false
             setBmiInfoVisible(false)
-            btnCalculate.apply {
-                isEnabled = false
-                text = ""
-            }
         }
     }
 
     private fun recalculateBMI(weight: Double, height: Double) {
-        val bmi: Double =
-            BmiCalculator.calculateBMI(weight, height)
-
+        val bmi: Double = BmiCalculator.calculateBMI(weight, height)
+            ?: return toast(R.string.invalid_input)
         binding.tvBmiValue.text = "%.2f".format(bmi)
-        binding.tvBmiDescription.text = BmiDescriptor.getBmiDescription(bmi)
+        binding.tvBmiDescription.text = getString(BmiDescriptor.getBmiDescription(bmi))
     }
 
     private fun endLoading() {
         setBmiInfoVisible(true)
         binding.progressIndicator.isVisible = false
-        binding.btnCalculate.apply {
-            text = getString(R.string.calculate)
-            isEnabled = true
-        }
+        binding.btnCalculate.isEnabled = true
     }
 
     private fun attachAdaptersToDropdownMenus() {
         binding.apply {
-            tiHeightUnit.attachAdapter(this@MainActivity, R.array.array_height_units)
-            tiWeightUnit.attachAdapter(this@MainActivity, R.array.array_weight_units)
+            tiHeightUnit.initDropdownOptions(R.array.array_height_units)
+            tiWeightUnit.initDropdownOptions(R.array.array_weight_units)
         }
     }
 
     private fun setBmiInfoVisible(flag: Boolean) {
         binding.apply {
-            setOf(tvBmiDescription, tvBmiDescriptionTitle, tvBmiValue, tvBmiValueTitle)
-                .forEach {
-                    it.isVisible = flag
-                }
+            setOf(
+                tvBmiDescriptionTitle,
+                tvBmiDescription,
+                tvBmiValueTitle,
+                tvBmiValue,
+            ).forEach {
+                it.isVisible = flag
+            }
         }
     }
 
-    private val pickedHeightUnit: String
-        get() = binding.tvHeightUnit.text.toString()
-
     private fun Double.toMeters(): Double {
+        val pickedHeightUnit = binding.tvHeightUnit.text.toString()
         val measuringUnit: HeightUnit =
             when (pickedHeightUnit) {
                 getString(R.string.ft) -> HeightUnit.Feet
@@ -118,10 +113,8 @@ class MainActivity : AppCompatActivity() {
         return measuringUnit.toMeters(this)
     }
 
-    private val pickedWeightUnit: String
-        get() = binding.tvWeightUnit.text.toString()
-
     private fun Double.toKilos(): Double {
+        val pickedWeightUnit = binding.tvWeightUnit.text.toString()
         val measuringUnit: WeightUnit =
             when (pickedWeightUnit) {
                 getString(R.string.lbs) -> WeightUnit.Pound
@@ -130,27 +123,24 @@ class MainActivity : AppCompatActivity() {
             }
         return measuringUnit.toKilos(this)
     }
-}
 
-private fun Context.toast(@StringRes stringResId: Int) {
-    Toast.makeText(
-        this,
-        getString(stringResId),
-        Toast.LENGTH_SHORT
-    ).show()
-}
+    private fun TextInputLayout.initDropdownOptions(
+        @ArrayRes stringArrayResId: Int
+    ) {
+        val stringArray = resources.getStringArray(stringArrayResId)
+        val adapter = ArrayAdapter(this@MainActivity, R.layout.menu_item, stringArray)
+        (this.editText as? AutoCompleteTextView ?: return)
+            .apply {
+                setText(stringArray[0])
+                setAdapter(adapter)
+            }
+    }
 
-private val handler
-    get() = Handler(Looper.getMainLooper())
-
-private fun TextInputLayout.attachAdapter(
-    context: Context,
-    @ArrayRes stringArrayResId: Int
-) {
-    val stringArray = context.resources.getStringArray(stringArrayResId)
-    val adapter = ArrayAdapter(context, R.layout.menu_item, stringArray)
-    (this.editText as AutoCompleteTextView).let {
-        it.setText(stringArray[0])
-        it.setAdapter(adapter)
+    private fun toast(@StringRes stringResId: Int) {
+        Toast.makeText(
+            this,
+            getString(stringResId),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

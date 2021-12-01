@@ -22,7 +22,7 @@
         app:layout_constraintGuide_end="16dp" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_your_weight_and_height"
+        android:id="@+id/tv_parameters"
         style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -40,24 +40,18 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@id/end_guideline"
         app:layout_constraintStart_toStartOf="@id/start_guideline"
-        app:layout_constraintTop_toBottomOf="@id/tv_your_weight_and_height">
+        app:layout_constraintTop_toBottomOf="@id/tv_parameters">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_weight"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+            style="@style/BmiTextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:textColorHint="@color/white"
-            app:boxBackgroundColor="@color/purple_200"
-            app:boxCornerRadiusTopEnd="6dp"
-            app:boxCornerRadiusTopStart="6dp"
-            app:hintTextColor="@color/white"
             app:layout_constraintEnd_toStartOf="@id/ti_weight_unit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:startIconDrawable="@drawable/ic_weight"
-            app:startIconTint="@color/white">
+            app:startIconDrawable="@drawable/ic_weight">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_weight"
@@ -71,13 +65,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_weight_unit"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
-            android:layout_width="140dp"
+            style="@style/BmiTextInputLayoutDropdown"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            app:boxBackgroundColor="@color/purple_200"
-            app:boxCornerRadiusTopEnd="6dp"
-            app:boxCornerRadiusTopStart="6dp"
-            app:endIconTint="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/ti_weight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -92,21 +82,15 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_height"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+            style="@style/BmiTextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:textColorHint="@color/white"
-            app:boxBackgroundColor="@color/purple_200"
-            app:boxCornerRadiusTopEnd="6dp"
-            app:boxCornerRadiusTopStart="6dp"
-            app:hintTextColor="@color/white"
             app:layout_constraintEnd_toStartOf="@id/ti_height_unit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ti_weight"
-            app:startIconDrawable="@drawable/ic_height"
-            app:startIconTint="@color/white">
+            app:startIconDrawable="@drawable/ic_height">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_height"
@@ -120,13 +104,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_height_unit"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
-            android:layout_width="140dp"
+            style="@style/BmiTextInputLayoutDropdown"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            app:boxBackgroundColor="@color/purple_200"
-            app:boxCornerRadiusTopEnd="6dp"
-            app:boxCornerRadiusTopStart="6dp"
-            app:endIconTint="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/ti_height"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ti_height">
@@ -141,11 +121,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="-16dp"
         app:cardCornerRadius="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_weight_and_height">
 
@@ -172,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:paddingVertical="2dp"
-                android:text="Значение BMI"
+                android:text="@string/bmi_value"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_result" />
@@ -198,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:paddingVertical="2dp"
-                android:text="Описание"
+                android:text="@string/description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_bmi_value" />

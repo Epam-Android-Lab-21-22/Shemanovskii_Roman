@@ -5,13 +5,14 @@
         <item>@string/lbs</item>
     </string-array>
 
+    <string name="kg">Kg</string>
+    <string name="lbs">Lbs</string>
+
     <string-array name="array_height_units">
         <item>@string/centimeters</item>
         <item>@string/ft</item>
     </string-array>
 
-    <string name="kg">Kg</string>
-    <string name="lbs">Lbs</string>
     <string name="centimeters">Cm</string>
     <string name="ft">Ft</string>
 </resources>
