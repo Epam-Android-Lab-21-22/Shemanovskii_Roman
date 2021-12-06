@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">solevarnya</string>
+    <string name="your_november_spendings">Ваши траты в ноябре</string>
+    <string name="welcome_to_nizhny">Добро пожаловать в Нижний!</string>
+    <string name="a_guide_to_stonks">Гайд к stonks</string>
+    <string name="about_modern_art">Про современное искусство</string>
+    <string name="december_spendings">Траты в декабре</string>
+    <string name="december_cashback">Кешбэк в декабре</string>
+    <string name="your_cards">Ваши карты</string>
+    <string name="debit_card_1">Дебетовая карта 1</string>
+    <string name="debit_card_2">Дебетовая карта 2</string>
+    <string name="credit_card">Кредитная карта</string>
+    <string name="savings_account">Накопительный счет</string>
+    <string name="balance_placeholder">%1$s ₽</string>
+    <string name="card_number_placeholder">**** %1$d</string>
+    <string name="app_stats">Статистика</string>
+    <string name="clicks_recorded">Кликов зарегестрировано</string>
+    <string name="characters_entered">Символов введено</string>
+    <string name="new_card_or_account">Новый счёт или карта</string>
+    <string name="good_evening">добрый вечер.</string>
+</resources>

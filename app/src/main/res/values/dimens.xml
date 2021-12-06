@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cv_story_width">125dp</dimen>
+    <dimen name="cv_story_height">105dp</dimen>
+    <dimen name="cv_story_margins">@dimen/margin_default</dimen>
+    <dimen name="cv_story_margin_end">@dimen/margin_small_negative</dimen>
+
+    <dimen name="cv_random_info_width">0dp</dimen>
+    <dimen name="cv_random_info_height">85dp</dimen>
+    <dimen name="cv_random_info_margin_horizontal">6dp</dimen>
+    <dimen name="cv_random_info_margin_vertical">@dimen/margin_small_plus</dimen>
+
+    <dimen name="cv_bank_card_height">80dp</dimen>
+
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_small_negative">-8dp</dimen>
+    <dimen name="margin_small_plus">12dp</dimen>
+    <dimen name="margin_default">16dp</dimen>
+    <dimen name="margin_default_negative">-16dp</dimen>
+    <dimen name="margin_default_plus">24dp</dimen>
+</resources>

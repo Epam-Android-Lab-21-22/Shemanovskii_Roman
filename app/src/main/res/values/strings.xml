@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">solevarnya</string>
+    <string name="your_november_spendings">Your November spendings</string>
+    <string name="welcome_to_nizhny">Welcome to Nizhny!</string>
+    <string name="a_guide_to_stonks">A guide to stonks</string>
+    <string name="about_modern_art">About Modern Art</string>
+    <string name="december_spendings">December Spendings</string>
+    <string name="december_cashback">December Cashback</string>
+    <string name="your_cards">Your cards</string>
+    <string name="debit_card_1">Debit card 1</string>
+    <string name="debit_card_2">Debit card 2</string>
+    <string name="credit_card">Credit card</string>
+    <string name="savings_account">Savings account</string>
+    <string name="balance_placeholder">%1$s ₽</string>
+    <string name="card_number_placeholder">**** %1$d</string>
+    <string name="app_stats">App stats</string>
+    <string name="clicks_recorded">Clicks recorded</string>
+    <string name="characters_entered">Characters entered</string>
+    <string name="new_card_or_account">New card or account</string>
+    <string name="good_evening">good evening.</string>
 </resources>

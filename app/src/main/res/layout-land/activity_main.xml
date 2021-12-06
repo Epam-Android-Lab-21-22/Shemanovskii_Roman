@@ -146,6 +146,66 @@
                             android:layout_height="wrap_content"
                             android:text="@string/about_modern_art" />
                     </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView style="@style/ShapeAppearanceOverlay.StoryCardView">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            style="@style/ShapeAppearanceOverlay.StoryImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/rubles" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.StoryTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/your_november_spendings" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView style="@style/ShapeAppearanceOverlay.StoryCardView">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            style="@style/ShapeAppearanceOverlay.StoryImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/cv_story_height"
+                            android:src="@drawable/nizhny" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.StoryTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/welcome_to_nizhny" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView style="@style/ShapeAppearanceOverlay.StoryCardView">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            style="@style/ShapeAppearanceOverlay.StoryImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/cv_story_height"
+                            android:src="@drawable/stonks" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.StoryTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/a_guide_to_stonks" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView style="@style/ShapeAppearanceOverlay.StoryCardView">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            style="@style/ShapeAppearanceOverlay.StoryImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/cv_story_height"
+                            android:src="@drawable/modern_art" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.StoryTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_modern_art" />
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -520,7 +580,7 @@
                             android:layout_width="32dp"
                             android:layout_height="0dp"
                             android:layout_marginEnd="@dimen/margin_small_plus"
-                            android:paddingVertical="10dp"
+                            android:paddingVertical="6dp"
                             android:src="@drawable/ic_cursor"
                             app:layout_constraintBottom_toBottomOf="@+id/tv_click_counter"
                             app:layout_constraintEnd_toStartOf="@id/tv_click_counter_title"
