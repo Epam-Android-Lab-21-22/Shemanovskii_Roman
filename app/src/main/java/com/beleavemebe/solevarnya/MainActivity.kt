@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
     private fun onNetworkStatusUnknown() {
         binding.ivStatus.setImageDrawable(drawable(R.drawable.internet_status_unknown))
         binding.textview.text = getString(R.string.network_status_unknown)
+        binding.btnProceed.isEnabled = false
     }
 
     private fun onNoNetwork() {
