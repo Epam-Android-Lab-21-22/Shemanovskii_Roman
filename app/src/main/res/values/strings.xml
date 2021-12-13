@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">solevarnya</string>
+    <string name="app_name">Permissions :-)</string>
+    <string name="network_status_unknown">Network is probably offline</string>
+    <string name="network_status_no_network">No network</string>
+    <string name="network_status_available">Network is available</string>
+    <string name="disconnected">Disconnected from the network</string>
+    <string name="proceed">Proceed</string>
+    <string name="rationale">Rationale</string>
+    <string name="rationale_msg">We really need this permission</string>
+    <string name="ok">OK</string>
+    <string name="use_feature">Use feature</string>
 </resources>
