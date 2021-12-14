@@ -10,12 +10,13 @@
         android:id="@+id/iv_status"
         android:layout_width="@dimen/iv_network_status_size"
         android:layout_height="@dimen/iv_network_status_size"
+        android:padding="@dimen/margin_default"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/textview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="centerCrop"
         tools:src="@drawable/internet_status_unknown" />
 
     <TextView
@@ -30,11 +31,11 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_status"
-        tools:text="Online" />
+        tools:text="Network is available" />
 
     <Button
         android:id="@+id/btn_proceed"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_default"
         android:layout_marginEnd="@dimen/margin_default"
@@ -42,6 +43,7 @@
         android:drawableEnd="@drawable/ic_next"
         android:text="@string/proceed"
         app:drawableTint="?attr/colorOnPrimary"
+        app:layout_constraintTop_toBottomOf="@id/textview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
