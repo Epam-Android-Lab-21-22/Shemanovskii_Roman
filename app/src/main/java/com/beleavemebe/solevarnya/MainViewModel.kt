@@ -23,6 +23,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val stateBeforeCallbacks = getInitialNetworkState(cm)
+        mutableNetworkState.postValue(stateBeforeCallbacks)
 
         val networkRequestCallback =
             object : ConnectivityManager.NetworkCallback()
@@ -43,6 +45,23 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         } else {
             val networkRequest = NetworkRequest.Builder().build()
             cm.registerNetworkCallback(networkRequest, networkRequestCallback)
+        }
+    }
+
+    private fun getInitialNetworkState(cm: ConnectivityManager): NetworkState {
+        return if (cm.isNetworkEnabled()) {
+            NetworkState.Connected
+        } else {
+            NetworkState.Disconnected
+        }
+    }
+
+    private fun ConnectivityManager.isNetworkEnabled(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getNetworkCapabilities(activeNetwork)
+                ?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
+        } else {
+            activeNetworkInfo?.isConnectedOrConnecting == true
         }
     }
 

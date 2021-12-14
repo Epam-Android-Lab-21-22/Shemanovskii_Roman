@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Permissions :-)</string>
-    <string name="network_status_unknown">Network is probably offline</string>
+    <string name="network_status_unknown">Network status is unknown smh</string>
     <string name="network_status_no_network">No network</string>
     <string name="network_status_available">Network is available</string>
     <string name="disconnected">Disconnected from the network</string>

@@ -5,7 +5,10 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.ActivityResultRegistry
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.beleavemebe.solevarnya.databinding.ActivityFeatureBinding
@@ -50,16 +53,16 @@ class FeatureActivity : AppCompatActivity() {
             }
         }
 
+    private fun failGracefully() {
+        Toast.makeText(this, "We respect your decision", Toast.LENGTH_SHORT).show()
+    }
+
     private fun showRationale(permission: String) {
         MaterialAlertDialogBuilder(this)
             .setTitle(getString(R.string.rationale))
             .setMessage(getString(R.string.rationale_msg))
             .setPositiveButton(getString(R.string.ok)) { _, _ -> requestPermission(permission) }
             .show()
-    }
-
-    private fun failGracefully() {
-        Toast.makeText(this, "We respect your decision", Toast.LENGTH_SHORT).show()
     }
 
     private fun doFeature() {

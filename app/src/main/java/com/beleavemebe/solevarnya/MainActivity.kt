@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnProceed.isEnabled = true
     }
 
-    private fun drawable(@DrawableRes resId: Int): Drawable? =
-        AppCompatResources.getDrawable(this, resId)
+    private fun drawable(@DrawableRes resId: Int): Drawable? {
+        return AppCompatResources.getDrawable(this, resId)
+    }
 }
