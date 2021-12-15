@@ -12,7 +12,7 @@
         android:layout_height="@dimen/iv_network_status_size"
         android:padding="@dimen/margin_default"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/textview"
+        app:layout_constraintBottom_toTopOf="@+id/tv_status"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,7 @@
         tools:src="@drawable/internet_status_unknown" />
 
     <TextView
-        android:id="@+id/textview"
+        android:id="@+id/tv_status"
         style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         android:drawableEnd="@drawable/ic_next"
         android:text="@string/proceed"
         app:drawableTint="?attr/colorOnPrimary"
-        app:layout_constraintTop_toBottomOf="@id/textview"
+        app:layout_constraintTop_toBottomOf="@id/tv_status"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -18,7 +18,6 @@ class FeatureViewModel(application: Application) : AndroidViewModel(application)
 
     sealed class State {
         object WaitingForImage : State()
-        class CapturingImage(val imgToCaptureUri: Uri) : State()
         class DisplayingImage(val capturedImgUri: Uri) : State()
         class InvertingImage(val imgToInvertUri: Uri) : State()
         class DisplayingInvertedImage(val bitmap: Bitmap) : State()
@@ -30,7 +29,6 @@ class FeatureViewModel(application: Application) : AndroidViewModel(application)
     fun onExecuteFeature() {
         val uri = getNewTempFileUri()
         photoUri = uri
-        mutableState.value = State.CapturingImage(uri)
     }
 
     fun onPhotoCaptured() {

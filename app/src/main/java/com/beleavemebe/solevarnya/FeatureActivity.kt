@@ -2,19 +2,17 @@ package com.beleavemebe.solevarnya
 
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -42,11 +40,9 @@ class FeatureActivity : AppCompatActivity() {
 
     private fun observeScreenState() {
         viewModel.state.observe(this) { state ->
+            Log.d("FeatureActivity", "$state")
             when (state) {
                 is FeatureViewModel.State.WaitingForImage -> {}
-                is FeatureViewModel.State.CapturingImage -> {
-                    takePhotoLauncher.launch(state.imgToCaptureUri)
-                }
                 is FeatureViewModel.State.DisplayingImage -> {
                     displayImage(state.capturedImgUri)
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -55,7 +51,7 @@ class FeatureActivity : AppCompatActivity() {
                 }
                 is FeatureViewModel.State.InvertingImage -> {
                     displayImage(state.imgToInvertUri)
-                    invertImage(state.imgToInvertUri) { invertedBitmap ->
+                    invertPhoto(state.imgToInvertUri) { invertedBitmap ->
                         viewModel.onImageInverted(invertedBitmap)
                     }
                 }
@@ -143,6 +139,7 @@ class FeatureActivity : AppCompatActivity() {
 
     private fun executeFeature() {
         viewModel.onExecuteFeature()
+        takePhotoLauncher.launch(viewModel.photoUri)
     }
 
     private val takePhotoLauncher =
@@ -164,7 +161,6 @@ class FeatureActivity : AppCompatActivity() {
         binding.ivPhoto.setImageBitmap(bitmap)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun initInvertButton() {
         binding.btnInvertColors.isVisible = true
         binding.btnInvertColors.setOnClickListener {
@@ -172,13 +168,11 @@ class FeatureActivity : AppCompatActivity() {
         }
     }
 
-
     private fun hideInvertButton() {
         binding.btnInvertColors.visibility = View.INVISIBLE
         binding.progressInvert.isIndeterminate = true
         binding.progressInvert.isVisible = true
     }
-
 
     private fun showInvertButton() {
         binding.btnInvertColors.isVisible = true
@@ -195,10 +189,8 @@ class FeatureActivity : AppCompatActivity() {
         }
     }
 
-    private fun invertImage(imgToInvertUri: Uri, onBitmapInverted: (Bitmap) -> Unit) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            return
-        }
+    private fun invertPhoto(imgToInvertUri: Uri, onBitmapInverted: (Bitmap) -> Unit) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
 
         hideInvertButton()
         thread {
@@ -206,29 +198,6 @@ class FeatureActivity : AppCompatActivity() {
             bitmap.invertColors()
             handler.post {
                 onBitmapInverted(bitmap)
-            }
-        }
-    }
-
-    private fun mutableBitmapFromUri(uri: Uri): Bitmap? {
-        val inputStream = contentResolver.openInputStream(uri)
-        val options = BitmapFactory.Options().apply {
-            inMutable = true
-        }
-        return BitmapFactory.decodeStream(inputStream, null, options)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun Bitmap.invertColors() {
-        fun Color.invert(): Color {
-            return Color.valueOf(255f - red(), 255f - green(), 255f - blue())
-        }
-
-        for (j in 0 until height) {
-            for (i in 0 until width) {
-                val argb = getPixel(i, j)
-                val inverted = Color.valueOf(argb).invert()
-                setPixel(i, j, inverted.toArgb())
             }
         }
     }

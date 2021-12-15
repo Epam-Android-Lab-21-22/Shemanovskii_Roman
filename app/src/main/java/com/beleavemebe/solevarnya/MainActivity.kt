@@ -42,25 +42,25 @@ class MainActivity : AppCompatActivity() {
 
     private fun onNetworkStatusUnknown() {
         binding.ivStatus.setImageDrawable(drawable(R.drawable.internet_status_unknown))
-        binding.textview.text = getString(R.string.network_status_unknown)
+        binding.tvStatus.text = getString(R.string.network_status_unknown)
         binding.btnProceed.isEnabled = false
     }
 
     private fun onNoNetwork() {
         binding.ivStatus.setImageDrawable(drawable(R.drawable.ic_internet_offline))
-        binding.textview.text = getString(R.string.network_status_no_network)
+        binding.tvStatus.text = getString(R.string.network_status_no_network)
         binding.btnProceed.isEnabled = false
 
         Snackbar.make(
             binding.btnProceed,
             getString(R.string.disconnected),
             Snackbar.LENGTH_SHORT
-        ).setAnchorView(binding.btnProceed).show()
+        ).show()
     }
 
     private fun onNetworkAvailable() {
         binding.ivStatus.setImageDrawable(drawable(R.drawable.ic_internet_available))
-        binding.textview.text = getString(R.string.network_status_available)
+        binding.tvStatus.text = getString(R.string.network_status_available)
         binding.btnProceed.isEnabled = true
     }
 
