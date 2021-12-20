@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_item_fragment_a"
+    <item android:id="@+id/menu_item_fragment_first"
         android:checkable="true"
-        android:title="@string/fragment_a"
+        android:title="@string/first_fragment"
         android:icon="@drawable/ic_one" />
 
-    <item android:id="@+id/menu_item_fragment_b"
+    <item android:id="@+id/menu_item_fragment_second"
         android:checkable="true"
-        android:title="@string/fragment_b"
+        android:title="@string/second_fragment"
         android:icon="@drawable/ic_two" />
 
-    <item android:id="@+id/menu_item_fragment_c"
+    <item android:id="@+id/menu_item_fragment_third"
         android:checkable="true"
-        android:title="@string/fragment_c"
+        android:title="@string/third_fragment"
         android:icon="@drawable/ic_three" />
 </menu>

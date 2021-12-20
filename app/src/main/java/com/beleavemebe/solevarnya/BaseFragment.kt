@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import java.lang.IllegalStateException
 
 sealed class BaseFragment(@LayoutRes layoutResId: Int) : Fragment(layoutResId) {
+    class FirstFragment : BaseFragment(R.layout.fragment_first)
+    class SecondFragment : BaseFragment(R.layout.fragment_second)
+    class ThirdFragment : BaseFragment(R.layout.fragment_third)
+
     private var stackPosition: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,35 +20,35 @@ sealed class BaseFragment(@LayoutRes layoutResId: Int) : Fragment(layoutResId) {
     }
 
     override fun onViewCreated(
-        view: View,
+        rootView: View,
         savedInstanceState: Bundle?
     ) {
-        super.onViewCreated(view, savedInstanceState)
+        super.onViewCreated(rootView, savedInstanceState)
 
-        view.findViewById<TextView>(R.id.tv_counter)
-            .text = stackPosition.toString()
+        initLayerTextView(rootView)
+        initRootViewListener(rootView)
+    }
 
-        view.setOnClickListener {
-            deepenSelf(
-                stackPosition
-                    ?: throw IllegalStateException("Unknown stack position")
-            )
+    private fun initLayerTextView(root: View) {
+        root.findViewById<TextView>(R.id.tv_counter).text = stackPosition.toString()
+    }
+
+    private fun initRootViewListener(root: View) {
+        root.setOnClickListener {
+            (requireActivity() as MainActivity)
+                .onFragmentClicked(
+                    this,
+                    stackPosition ?: throw IllegalStateException("Unknown stack position")
+                )
         }
     }
 
     override fun onResume() {
         super.onResume()
-        (requireActivity() as AppCompatActivity)
-            .supportActionBar?.let {
-                it.title = this::class.java.simpleName
-            }
-    }
-
-    protected abstract fun deepenSelf(stackPosition: Int)
-
-    protected inline fun <reified T : BaseFragment> deepen(stackPosition: Int) {
         (requireActivity() as MainActivity)
-            .deepenCurrentFragment<T>(stackPosition + 1)
+            .run {
+                supportActionBar?.title = getTagFor(this@BaseFragment)
+            }
     }
 
     companion object {

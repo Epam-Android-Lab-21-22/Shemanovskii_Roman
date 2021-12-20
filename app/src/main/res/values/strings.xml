@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">solevarnya</string>
-    <string name="fragment_a">Fragment A</string>
-    <string name="fragment_b">Fragment B</string>
-    <string name="fragment_c">Fragment C</string>
+    <string name="first_fragment">First fragment</string>
+    <string name="second_fragment">Second fragment</string>
+    <string name="third_fragment">Third fragment</string>
 </resources>

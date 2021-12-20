@@ -2,17 +2,14 @@ package com.beleavemebe.solevarnya
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import androidx.activity.addCallback
 import androidx.annotation.IdRes
 import androidx.core.os.bundleOf
 import androidx.core.view.forEach
 import androidx.fragment.app.*
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.beleavemebe.solevarnya.BaseFragment.*
 import com.beleavemebe.solevarnya.databinding.ActivityMainBinding
-import java.lang.IllegalStateException
-import java.lang.IndexOutOfBoundsException
 
 class MainActivity : AppCompatActivity() {
     private val binding by viewBinding(ActivityMainBinding::bind)
@@ -24,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         initBottomNav()
         if (savedInstanceState == null) {
-            replaceCurrentFragmentWith<FragmentA>()
+            switchToFragment(::FirstFragment)
         }
     }
 
@@ -37,79 +34,91 @@ class MainActivity : AppCompatActivity() {
     private fun onBottomNavItemClicked(item: MenuItem?): Boolean {
         item?.isChecked = true
         return when (item?.itemId) {
-            R.id.menu_item_fragment_a -> replaceCurrentFragmentWith<FragmentA>()
-            R.id.menu_item_fragment_b -> replaceCurrentFragmentWith<FragmentB>()
-            R.id.menu_item_fragment_c -> replaceCurrentFragmentWith<FragmentC>()
+            R.id.menu_item_fragment_first -> switchToFragment(::FirstFragment)
+            R.id.menu_item_fragment_second -> switchToFragment(::SecondFragment)
+            R.id.menu_item_fragment_third -> switchToFragment(::ThirdFragment)
             else -> false
         }
     }
 
-    private inline fun <reified F : BaseFragment> replaceCurrentFragmentWith(): Boolean {
-        with(supportFragmentManager) {
-            val currentBackStackTag = getCurrentBackStackTag()
-            if (currentBackStackTag != null) {
-                Log.d("MainActivity", "Saving $currentBackStackTag's backstack with $backStackEntryCount entries")
-                saveBackStack(currentBackStackTag)
+    private fun switchToFragment(createFragment: () -> BaseFragment): Boolean {
+        val newFragment = createFragment()
+
+        val currentStackTag = getCurrentTag()
+        val targetStackTag = getTagFor(newFragment)
+
+        supportFragmentManager.run {
+            currentStackTag?.let {
+                saveBackStack(it)
             }
 
             commit {
                 setReorderingAllowed(true)
-                replace<F>(R.id.container)
+                replace(R.id.container, newFragment)
             }
 
-            val targetBackStackTag = getBackStackTagFor<F>()
-            restoreBackStack(targetBackStackTag)
-            Log.d("MainActivity", "Restored $backStackEntryCount entries from backstack $targetBackStackTag")
-
-            onBackPressedDispatcher.addCallback(this@MainActivity) {
-                isEnabled = false
-                super.onBackPressed()
-                updateLabelOf<F>()
-                isEnabled = true
-            }
+            restoreBackStack(targetStackTag)
         }
         return true
     }
 
-    inline fun <reified F : BaseFragment> deepenCurrentFragment(nextDepth: Int) {
-        with(supportFragmentManager) {
-            val currBackStackTag = getCurrentBackStackTag()
-            val args = bundleOf(BaseFragment.KEY_STACK_POSITION to nextDepth)
-            updateLabelOf<F>()
-            commit {
-                addToBackStack(currBackStackTag)
-                setReorderingAllowed(true)
-                add<F>(R.id.container, null, args)
+    fun onFragmentClicked(
+        fragment: BaseFragment,
+        stackPosition: Int
+    ) = layNewFragment(fragment, stackPosition + 1)
+
+    private fun layNewFragment(fragment: BaseFragment, layer: Int) {
+        supportFragmentManager.commit {
+            val currentStackTag = getCurrentTag()
+            addToBackStack(currentStackTag)
+            setReorderingAllowed(true)
+            val args = bundleOf(BaseFragment.KEY_STACK_POSITION to layer)
+            add(R.id.container, fragment::class.java, args, null)
+        }
+        incLabelOf(fragment)
+    }
+
+    override fun onBackPressed() {
+        currentFragment?.let {
+            decLabelOf(it)
+        }
+        super.onBackPressed()
+    }
+
+    private fun getCurrentTag(): String? =
+        currentFragment?.let {
+            getTagFor(it)
+        }
+
+    fun getTagFor(fragment: BaseFragment): String =
+        when (fragment) {
+            is FirstFragment -> getString(R.string.first_fragment)
+            is SecondFragment -> getString(R.string.second_fragment)
+            is ThirdFragment -> getString(R.string.third_fragment)
+        }
+
+    private fun incLabelOf(fragment: BaseFragment) = updateLabel(fragment, 1)
+    private fun decLabelOf(fragment: BaseFragment) = updateLabel(fragment, -1)
+
+    private fun updateLabel(fragment: BaseFragment, change: Int) {
+        @IdRes val menuItemId =
+            when (fragment) {
+                is FirstFragment -> R.id.menu_item_fragment_first
+                is SecondFragment -> R.id.menu_item_fragment_second
+                is ThirdFragment -> R.id.menu_item_fragment_third
             }
-        }
+        val badge = binding.bottomNavView.getOrCreateBadge(menuItemId)
+        badge.number += change
+        badge.isVisible = badge.number > 0
     }
 
-    inline fun <reified F : BaseFragment> updateLabelOf() =
-        when (F::class) {
-            FragmentA::class -> updateLabel(R.id.menu_item_fragment_a)
-            FragmentB::class -> updateLabel(R.id.menu_item_fragment_b)
-            FragmentC::class -> updateLabel(R.id.menu_item_fragment_c)
-            else -> throw IllegalStateException(
-                "Missing branch for ${F::class.java.simpleName}"
-            )
+    private val currentFragment: BaseFragment?
+        get() = supportFragmentManager.run {
+            val size = backStackEntryCount
+
+            if (size == 0)
+                null
+            else
+                fragments[size - 1] as BaseFragment
         }
-
-    fun updateLabel(@IdRes menuItemIdRes: Int) {
-        val badge = binding.bottomNavView.getOrCreateBadge(menuItemIdRes)
-        val count: Int = supportFragmentManager.backStackEntryCount + 1
-        badge.isVisible = count > 0
-        badge.number = count
-    }
-
-    fun FragmentManager.getCurrentBackStackTag(): String? =
-        try {
-            val fragment: Fragment = fragments[0]
-            fragment::class.java.simpleName
-        } catch (e: IndexOutOfBoundsException) {
-            Log.e("MainActivity", "Empty back stack", e)
-            null
-        }
-
-    private inline fun <reified F : Fragment> getBackStackTagFor(): String =
-        F::class.java.simpleName
 }
