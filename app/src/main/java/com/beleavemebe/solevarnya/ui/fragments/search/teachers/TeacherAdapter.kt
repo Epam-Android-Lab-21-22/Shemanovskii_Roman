@@ -9,6 +9,7 @@ import com.beleavemebe.solevarnya.databinding.ListItemAddTeacherBinding
 import com.beleavemebe.solevarnya.databinding.ListItemTeacherBinding
 import com.beleavemebe.solevarnya.model.Teacher
 import com.beleavemebe.solevarnya.ui.fragments.search.GenericDiffUtilItemCallback
+import com.bumptech.glide.Glide
 import java.lang.IllegalArgumentException
 
 class TeacherAdapter(
@@ -85,6 +86,12 @@ class TeacherAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(teacher: Teacher) {
             val c = binding.root.context
+
+            Glide.with(c)
+                .load(teacher.avatarUrl)
+                .placeholder(R.drawable.person_placeholder)
+                .into(binding.ivAvatar)
+
             binding.tvNameSurname.text = c.getString(R.string.single_space_placeholder, teacher.name, teacher.surname)
             binding.tvRank.text = c.getString(teacher.rank.stringResId)
             binding.tvLocation.text = teacher.location

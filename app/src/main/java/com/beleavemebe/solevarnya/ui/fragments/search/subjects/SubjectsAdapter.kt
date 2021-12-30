@@ -8,6 +8,7 @@ import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.databinding.ListItemSubjectBinding
 import com.beleavemebe.solevarnya.model.Subject
 import com.beleavemebe.solevarnya.ui.fragments.search.GenericDiffUtilItemCallback
+import com.bumptech.glide.Glide
 
 class SubjectsAdapter :
     ListAdapter<Subject, SubjectsAdapter.SubjectViewHolder>(subjectDiffCallback) {
@@ -31,6 +32,12 @@ class SubjectsAdapter :
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(subject: Subject) {
             val c = binding.root.context
+
+            Glide.with(c)
+                .load(subject.imgUrl)
+                .placeholder(R.drawable.placeholder)
+                .into(binding.ivBackground)
+
             binding.tvSubjectTitle.text = subject.name
             binding.tvSubjectCredits.text =
                 c.getString(R.string.credits_placeholder, subject.credits)

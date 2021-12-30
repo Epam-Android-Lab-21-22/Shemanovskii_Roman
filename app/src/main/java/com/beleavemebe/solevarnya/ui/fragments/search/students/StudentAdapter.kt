@@ -11,6 +11,7 @@ import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.databinding.ListItemStudentBinding
 import com.beleavemebe.solevarnya.model.Student
 import com.beleavemebe.solevarnya.ui.fragments.search.GenericDiffUtilItemCallback
+import com.bumptech.glide.Glide
 
 class StudentAdapter(
     private val onMoreButtonClicked: (ImageButton, Student) -> Unit
@@ -37,18 +38,21 @@ class StudentAdapter(
         fun bind(student: Student) {
             val c = binding.root.context
 
+            Glide.with(c)
+                .load(student.avatarUrl)
+                .placeholder(R.drawable.person_placeholder)
+                .into(binding.ivAvatar)
+
             binding.tvNameSurname.text = c.getString(
                 R.string.single_space_placeholder,
                 student.name,
                 student.surname
             )
-
             binding.tvDegreeGroup.text = c.getString(
                 R.string.single_space_placeholder,
                 c.getString(student.degree.stringResId),
                 student.group
             )
-
             with(binding.ibMore) {
                 setOnClickListener {
                     onMoreButtonClicked(this, student)

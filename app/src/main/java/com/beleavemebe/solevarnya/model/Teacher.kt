@@ -6,5 +6,6 @@ data class Teacher(
     val name: String,
     val surname: String,
     val rank: AcademicRank,
-    val location: String
+    val location: String,
+    val avatarUrl: String = AnimeAvatars.getRandomAvatarUrl()
 )

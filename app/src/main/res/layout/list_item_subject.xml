@@ -2,20 +2,21 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
-    android:elevation="2dp"
+    android:elevation="16dp"
     android:focusable="true"
-    app:cardCornerRadius="0dp">
+    app:cardCornerRadius="0dp"
+    tools:layout_width="200dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="100dp">
 
@@ -24,32 +25,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/bychkov"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Space
-                android:id="@+id/background_middle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/iv_background"
-                app:layout_constraintEnd_toEndOf="@id/iv_background"
-                app:layout_constraintStart_toStartOf="@id/iv_background"
-                app:layout_constraintTop_toTopOf="@id/iv_background"
-                app:layout_constraintVertical_bias="0.65" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/bychkov" />
 
             <ImageView
                 android:id="@+id/iv_gradient"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_small"
+                android:layout_gravity="bottom"
                 android:scaleType="centerCrop"
                 android:src="@drawable/gradient_transparent_to_white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/background_middle" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_subject_title"
@@ -57,12 +49,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_small"
-            tools:text="Алгоритмы и структуры данных"
             app:layout_constraintBottom_toBottomOf="@+id/iv_gradient"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_gradient"
-            app:layout_constraintVertical_bias="1" />
+            app:layout_constraintVertical_bias="1"
+            tools:text="Алгоритмы и структуры данных" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_subject_credits"
@@ -81,15 +73,14 @@
             style="@style/ItemSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_small"
             android:layout_marginHorizontal="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tv_subject_title"
             app:layout_constraintStart_toStartOf="@+id/tv_subject_title"
             app:layout_constraintTop_toBottomOf="@id/tv_subject_title"
             tools:text="Учащихся: 105" />
     </LinearLayout>
-
 
 
 </com.google.android.material.card.MaterialCardView>

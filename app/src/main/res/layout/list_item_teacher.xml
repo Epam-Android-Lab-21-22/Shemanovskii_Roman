@@ -18,7 +18,7 @@
             android:layout_width="@dimen/item_imageview_size_plus"
             android:layout_height="@dimen/item_imageview_size_plus"
             android:layout_marginTop="@dimen/margin_default"
-            android:src="@drawable/arsik"
+            tools:src="@drawable/arsik"
             app:layout_constraintBottom_toTopOf="@id/tv_name_surname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
