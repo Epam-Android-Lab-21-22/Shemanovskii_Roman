@@ -29,7 +29,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         TabLayoutMediator(
             binding.tabLayout, binding.viewPager
         ) { tab, position ->
-            tab.text = getFragmentTitle(position, requireContext())
+            tab.text = PagerHelper.getFragmentTitle(position, requireContext())
         }.attach()
     }
 
@@ -47,13 +47,13 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private inner class PagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
         override fun getItemCount(): Int =
-            getRecyclerFragmentCount()
+            PagerHelper.getRecyclerFragmentCount()
 
         override fun createFragment(position: Int): Fragment =
-            createRecyclerFragment(position)
+            PagerHelper.createRecyclerFragment(position)
     }
 
-    private companion object PagerHelper {
+    private object PagerHelper {
         private val PAGER_FRAGMENTS = arrayOf(
             ::StudentsFragment to R.string.students,
             ::TeachersFragment to R.string.teachers,

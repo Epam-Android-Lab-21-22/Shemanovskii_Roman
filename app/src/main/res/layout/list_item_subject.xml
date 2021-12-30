@@ -1,8 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:elevation="2dp"
+    android:focusable="true"
+    app:cardCornerRadius="0dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:id="@+id/iv_background"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bychkov"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Space
+                android:id="@+id/background_middle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/iv_background"
+                app:layout_constraintEnd_toEndOf="@id/iv_background"
+                app:layout_constraintStart_toStartOf="@id/iv_background"
+                app:layout_constraintTop_toTopOf="@id/iv_background"
+                app:layout_constraintVertical_bias="0.65" />
+
+            <ImageView
+                android:id="@+id/iv_gradient"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/gradient_transparent_to_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/background_middle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_subject_title"
+            style="@style/ItemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_small"
+            tools:text="Алгоритмы и структуры данных"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_gradient"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_gradient"
+            app:layout_constraintVertical_bias="1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_subject_credits"
+            style="@style/ItemSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_subject_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_subject_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_subject_title"
+            tools:text="Кредитов: 6" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_subject_enrolled"
+            style="@style/ItemSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginHorizontal="@dimen/margin_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_subject_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_subject_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_subject_title"
+            tools:text="Учащихся: 105" />
+    </LinearLayout>
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -6,6 +6,7 @@ import com.beleavemebe.solevarnya.model.Teacher
 import com.beleavemebe.solevarnya.repository.TeacherRepository
 import com.beleavemebe.solevarnya.ui.fragments.search.ITEM_DEFAULT_MARGIN_PX
 import com.beleavemebe.solevarnya.ui.fragments.search.RecyclerFragment
+import com.beleavemebe.solevarnya.ui.fragments.search.decoration.GridMarginDecoration
 
 private const val TEACHER_GRID_COLUMNS = 2
 

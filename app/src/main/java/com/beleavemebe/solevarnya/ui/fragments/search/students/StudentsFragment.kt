@@ -10,6 +10,7 @@ import com.beleavemebe.solevarnya.model.Student
 import com.beleavemebe.solevarnya.repository.StudentRepository
 import com.beleavemebe.solevarnya.ui.fragments.search.ITEM_DEFAULT_MARGIN_PX
 import com.beleavemebe.solevarnya.ui.fragments.search.RecyclerFragment
+import com.beleavemebe.solevarnya.ui.fragments.search.decoration.LinearMarginDecoration
 
 class StudentsFragment : RecyclerFragment<Student>() {
     private val touchCallback = object : ItemTouchHelper.SimpleCallback(

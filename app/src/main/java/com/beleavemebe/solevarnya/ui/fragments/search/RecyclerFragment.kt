@@ -61,4 +61,7 @@ abstract class RecyclerFragment<T> : Fragment(R.layout.fragment_recycler) {
         items.swap(from, to)
         refreshItems()
     }
+
+    protected fun itemAt(position: Int): T =
+        items[position]
 }

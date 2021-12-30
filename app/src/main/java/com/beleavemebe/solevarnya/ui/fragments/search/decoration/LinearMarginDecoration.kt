@@ -1,4 +1,4 @@
-package com.beleavemebe.solevarnya.ui.fragments.search.students
+package com.beleavemebe.solevarnya.ui.fragments.search.decoration
 
 import android.graphics.Rect
 import android.view.View

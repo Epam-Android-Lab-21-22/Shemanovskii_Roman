@@ -2,6 +2,7 @@ package com.beleavemebe.solevarnya
 
 import android.app.Application
 import com.beleavemebe.solevarnya.repository.StudentRepository
+import com.beleavemebe.solevarnya.repository.SubjectRepository
 import com.beleavemebe.solevarnya.repository.TeacherRepository
 
 class App : Application() {
@@ -13,5 +14,6 @@ class App : Application() {
     private fun initRepositories() {
         StudentRepository.init(this)
         TeacherRepository.init(this)
+        SubjectRepository.init(this)
     }
 }
