@@ -14,6 +14,7 @@
     <string name="subjects">Дисциплины</string>
     <string name="single_space_placeholder">%1$s %2$s</string>
     <string name="expel">Отчислить</string>
+    <string name="list_is_empty">Список пуст</string>
 
     <string-array name="array_cities">
         <item>Москва</item>

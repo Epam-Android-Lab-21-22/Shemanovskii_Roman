@@ -4,6 +4,7 @@ package com.beleavemebe.solevarnya.ui.fragments.search
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -43,7 +44,9 @@ abstract class RecyclerFragment<T> : Fragment(R.layout.fragment_recycler) {
     ) {
         // ListAdapter wants a fresh reference on every list update to run diff check, so we
         // accept Iterable just to make a copy in the following line https://stackoverflow.com/q/49726385
-        adapter.submitList(items.toList())
+        val list = items.toList()
+        adapter.submitList(list)
+        binding.tvListIsEmpty.isVisible = list.isEmpty()
     }
 
     protected fun removeItem(item: T) {
