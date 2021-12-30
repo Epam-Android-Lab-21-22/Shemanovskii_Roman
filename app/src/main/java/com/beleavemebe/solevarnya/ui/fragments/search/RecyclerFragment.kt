@@ -19,7 +19,7 @@ const val ITEM_DEFAULT_MARGIN_PX = 20
 abstract class RecyclerFragment<T> : Fragment(R.layout.fragment_recycler) {
     private val binding by viewBinding(FragmentRecyclerBinding::bind)
 
-    private var items = listOf<T>()
+    private var items = mutableListOf<T>()
 
     private val adapter: ListAdapter<T, *>
         get() = (binding.rvMain.adapter as? ListAdapter<T, *>)
@@ -30,34 +30,35 @@ abstract class RecyclerFragment<T> : Fragment(R.layout.fragment_recycler) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        items = fetchItems()
+        items = fetchItems().toMutableList()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecycler(binding.rvMain)
-        refreshItems(items)
+        refreshItems()
     }
 
-    private fun refreshItems(
-        items: Iterable<T>
-    ) {
-        // ListAdapter wants a fresh reference on every list update to run diff check, so we
-        // accept Iterable just to make a copy in the following line https://stackoverflow.com/q/49726385
+    private fun refreshItems() {
+        // ListAdapter wants a fresh reference on every list update to run diff check,
+        // so we make a copy with `.toList()` in the following line https://stackoverflow.com/q/49726385
         val list = items.toList()
         adapter.submitList(list)
         binding.tvListIsEmpty.isVisible = list.isEmpty()
     }
 
     protected fun removeItem(item: T) {
-        val newItems = items - item
-        items = newItems
-        refreshItems(newItems)
+        items.remove(item)
+        refreshItems()
+    }
+
+    protected fun addItem(item: T) {
+        items.add(item)
+        refreshItems()
     }
 
     protected fun swapItems(from: Int, to: Int) {
-        val newItems = items.toMutableList()
-        newItems.swap(from, to)
-        refreshItems(newItems)
+        items.swap(from, to)
+        refreshItems()
     }
 }

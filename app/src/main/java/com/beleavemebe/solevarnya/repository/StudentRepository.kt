@@ -13,14 +13,6 @@ object StudentRepository : ItemRepository<Student> {
     override fun fetchAll(): List<Student> =
         hardcodedStudents
 
-    fun removeItem(student: Student) {
-        hardcodedStudents -= student
-    }
-
-    fun swap(from: Int, to: Int) {
-        hardcodedStudents.swap(from, to)
-    }
-
     fun init(context: Context) {
         val faker = getFaker()
 
@@ -38,5 +30,13 @@ object StudentRepository : ItemRepository<Student> {
 
             Student(name, surname, degree, group)
         }.take(16).toMutableList()
+    }
+
+    fun removeItem(student: Student) {
+        hardcodedStudents -= student
+    }
+
+    fun swap(from: Int, to: Int) {
+        hardcodedStudents.swap(from, to)
     }
 }

@@ -16,10 +16,7 @@ class SubjectsFragment : RecyclerFragment<Subject>() {
     override fun initRecycler(rv: RecyclerView) {
         with(rv) {
             adapter = SubjectsAdapter()
-            layoutManager = StaggeredGridLayoutManager(
-                SUBJECTS_GRID_COLS,
-                StaggeredGridLayoutManager.VERTICAL
-            )
+            layoutManager = StaggeredGridLayoutManager(SUBJECTS_GRID_COLS, StaggeredGridLayoutManager.VERTICAL)
         }
     }
 }

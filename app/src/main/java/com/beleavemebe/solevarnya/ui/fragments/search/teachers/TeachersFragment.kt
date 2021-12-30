@@ -1,7 +1,7 @@
 package com.beleavemebe.solevarnya.ui.fragments.search.teachers
 
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.beleavemebe.solevarnya.model.Teacher
 import com.beleavemebe.solevarnya.repository.TeacherRepository
 import com.beleavemebe.solevarnya.ui.fragments.search.ITEM_DEFAULT_MARGIN_PX
@@ -16,9 +16,15 @@ class TeachersFragment : RecyclerFragment<Teacher>() {
 
     override fun initRecycler(rv: RecyclerView) {
         with(rv) {
-            adapter = TeacherAdapter()
-            layoutManager = GridLayoutManager(requireContext(), TEACHER_GRID_COLUMNS)
+            adapter = TeacherAdapter(::addTeacher)
+            layoutManager = StaggeredGridLayoutManager(TEACHER_GRID_COLUMNS, StaggeredGridLayoutManager.VERTICAL)
             addItemDecoration(GridMarginDecoration(ITEM_DEFAULT_MARGIN_PX))
         }
+    }
+
+    private fun addTeacher() {
+        val newItem = TeacherRepository.getRandomTeacher(requireContext())
+        TeacherRepository.addItem(newItem)
+        super.addItem(newItem)
     }
 }
