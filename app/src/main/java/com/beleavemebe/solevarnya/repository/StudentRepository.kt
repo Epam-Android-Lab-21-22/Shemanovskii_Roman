@@ -29,7 +29,7 @@ object StudentRepository : ItemRepository<Student> {
             val group = "$groupYear$groupProgram$groupNumber"
 
             Student(name, surname, degree, group)
-        }.take(16).toMutableList()
+        }.take(12).toMutableList()
     }
 
     fun removeItem(student: Student) {

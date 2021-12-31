@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.model.Student
 import com.beleavemebe.solevarnya.repository.StudentRepository
-import com.beleavemebe.solevarnya.ui.fragments.search.ITEM_DEFAULT_MARGIN_PX
+import com.beleavemebe.solevarnya.ui.fragments.Constants.ITEM_MARGIN
 import com.beleavemebe.solevarnya.ui.fragments.search.RecyclerFragment
 import com.beleavemebe.solevarnya.ui.fragments.search.decoration.LinearMarginDecoration
 
@@ -41,7 +41,7 @@ class StudentsFragment : RecyclerFragment<Student>() {
             adapter = StudentAdapter(::onMoreButtonClicked)
             layoutManager = LinearLayoutManager(requireContext())
             ItemTouchHelper(touchCallback).attachToRecyclerView(this)
-            addItemDecoration(LinearMarginDecoration(ITEM_DEFAULT_MARGIN_PX))
+            addItemDecoration(LinearMarginDecoration(ITEM_MARGIN))
         }
     }
 

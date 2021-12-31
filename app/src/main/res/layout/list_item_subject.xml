@@ -18,7 +18,7 @@
 
         <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="100dp">
+            android:layout_height="150dp">
 
             <ImageView
                 android:id="@+id/iv_background"
@@ -33,7 +33,7 @@
             <ImageView
                 android:id="@+id/iv_gradient"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_small"
+                android:layout_height="@dimen/margin_default"
                 android:layout_gravity="bottom"
                 android:scaleType="centerCrop"
                 android:src="@drawable/gradient_transparent_to_white"

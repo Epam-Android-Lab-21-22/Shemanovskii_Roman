@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_size_smaller">13sp</dimen>
+    <dimen name="text_size_default_minus">14sp</dimen>
     <dimen name="text_size_default">15sp</dimen>
+    <dimen name="text_size_default_plus">17sp</dimen>
     <dimen name="padding_default">4dp</dimen>
     <dimen name="item_imageview_size">40dp</dimen>
     <dimen name="item_imageview_size_plus">50dp</dimen>

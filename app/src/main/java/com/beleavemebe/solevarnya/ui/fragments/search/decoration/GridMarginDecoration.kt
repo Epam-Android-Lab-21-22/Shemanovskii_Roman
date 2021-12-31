@@ -14,8 +14,8 @@ class GridMarginDecoration(margin: Int) : RecyclerView.ItemDecoration() {
         state: RecyclerView.State
     ) {
         if (parent.paddingLeft != halfMargin) {
-            parent.setPadding(halfMargin, halfMargin, halfMargin, halfMargin);
-            parent.clipToPadding = false;
+            parent.setPadding(halfMargin, halfMargin, halfMargin, halfMargin)
+            parent.clipToPadding = false
         }
 
         outRect.top = halfMargin

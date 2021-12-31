@@ -2,15 +2,15 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/fragment_overview">
+    app:startDestination="@id/fragment_timetable">
 
     <fragment
         android:id="@+id/fragment_search"
         android:name="com.beleavemebe.solevarnya.ui.fragments.search.SearchFragment"
-        android:label="Найти" />
+        android:label="@string/find" />
 
     <fragment
-        android:id="@+id/fragment_overview"
-        android:name="com.beleavemebe.solevarnya.ui.fragments.overview.OverviewFragment"
-        android:label="Обзор" />
+        android:id="@+id/fragment_timetable"
+        android:name="com.beleavemebe.solevarnya.ui.fragments.timetable.TimetableFragment"
+        android:label="@string/timetable" />
 </navigation>

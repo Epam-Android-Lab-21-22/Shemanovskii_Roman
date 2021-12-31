@@ -12,6 +12,9 @@ object SubjectRepository : ItemRepository<Subject> {
     override fun fetchAll(): List<Subject> =
         hardcodedSubjects
 
+    fun fetchRandom(): Subject =
+        hardcodedSubjects.random()
+
     fun init(context: Context) {
         val faker = getFaker()
         val randomEnrolledNumber = fun(): Int = faker.number().numberBetween(0, 1000)

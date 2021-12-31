@@ -14,3 +14,7 @@ fun illegalState(msg: String): Nothing =
 fun <E> MutableList<E>.swap(from: Int, to: Int) {
     add(to, removeAt(from))
 }
+
+fun Int.doubleFigured(): String {
+    return if (this >= 10) "$this" else "0$this"
+}

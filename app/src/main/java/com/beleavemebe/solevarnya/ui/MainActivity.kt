@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configureTopBar(): AppBarConfiguration {
-        val topLevelDestinations = setOf(R.id.fragment_overview, R.id.fragment_search)
+        val topLevelDestinations = setOf(R.id.fragment_timetable, R.id.fragment_search)
         return AppBarConfiguration(topLevelDestinations)
     }
 

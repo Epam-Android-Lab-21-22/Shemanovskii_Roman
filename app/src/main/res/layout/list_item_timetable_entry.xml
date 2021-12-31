@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:elevation="0dp"
+    app:cardCornerRadius="0dp"
+    android:focusable="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/item_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/margin_default" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/item_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/margin_default" />
+
+        <TextView
+            android:id="@+id/tv_subject"
+            style="@style/TimetableItemTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/item_end"
+            app:layout_constraintStart_toStartOf="@+id/item_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_lesson_type"
+            tools:text="Дискретная математика" />
+
+        <TextView
+            android:id="@+id/tv_lesson_type"
+            style="@style/TimetableItemSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/item_start"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/margin_default"
+            tools:text="Лекция" />
+
+        <TextView
+            android:id="@+id/tv_teacher"
+            style="@style/TimetableItemSubtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/item_end"
+            app:layout_constraintStart_toStartOf="@+id/item_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_subject"
+            app:layout_constraintBottom_toTopOf="@id/divider"
+            app:layout_goneMarginBottom="@dimen/margin_default"
+            tools:text="Дашков Евгений Владимирович" />
+
+        <TextView
+            android:id="@+id/tv_hour_minute_beginning"
+            style="@style/TimetableItemSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_lesson_type"
+            app:layout_constraintEnd_toStartOf="@+id/tv_dash"
+            tools:text="11:10" />
+
+        <TextView
+            android:id="@+id/tv_dash"
+            style="@style/TimetableItemSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/long_dash"
+            android:paddingHorizontal="@dimen/padding_default"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_hour_minute_beginning"
+            app:layout_constraintEnd_toStartOf="@+id/tv_hour_minute_end" />
+
+        <TextView
+            android:id="@+id/tv_hour_minute_end"
+            style="@style/TimetableItemSubtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_dash"
+            app:layout_constraintEnd_toStartOf="@+id/item_end"
+            tools:text="12:30" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/item_end"
+            app:layout_constraintStart_toStartOf="@+id/item_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_teacher" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

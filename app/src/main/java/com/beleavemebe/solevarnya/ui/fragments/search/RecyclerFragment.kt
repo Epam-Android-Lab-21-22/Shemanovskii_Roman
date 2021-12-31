@@ -14,7 +14,6 @@ import com.beleavemebe.solevarnya.databinding.FragmentRecyclerBinding
 import com.beleavemebe.solevarnya.util.illegalState
 import com.beleavemebe.solevarnya.util.swap
 
-const val ITEM_DEFAULT_MARGIN_PX = 20
 
 abstract class RecyclerFragment<T> : Fragment(R.layout.fragment_recycler) {
     private val binding by viewBinding(FragmentRecyclerBinding::bind)

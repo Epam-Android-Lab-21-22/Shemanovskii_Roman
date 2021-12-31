@@ -8,7 +8,7 @@ object PepeAvatars {
         "https://i.pinimg.com/474x/7a/73/fb/7a73fb338b6ded8373e322cf8fe2f9e4.jpg",
         "https://thumbnailer.mixcloud.com/unsafe/300x300/extaudio/a/9/4/4/58b0-2e09-4471-a48b-5011152da84c",
         "https://alekbo.com/wp-content/uploads/2019/07/rage-pepe-300x300.jpg",
-        "http://pm1.narvii.com/6504/7960c8a3bce57228b8f6e5fd9bb562dc2b37cc9b_00.jpg",
+        "https://cs14.pikabu.ru/images/previews_comm/2021-02_4/1613591652197890169.jpg",
         "https://pbs.twimg.com/profile_images/1442299386654969860/KTzEcq1z_400x400.jpg",
         "https://i1.sndcdn.com/artworks-Af2OohvaSGfqrJ7V-xcrK8w-t500x500.jpg",
         "https://cdn.frankerfacez.com/emoticon/603660/4",

@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.beleavemebe.solevarnya.model.Subject
 import com.beleavemebe.solevarnya.repository.SubjectRepository
-import com.beleavemebe.solevarnya.ui.fragments.search.ITEM_DEFAULT_MARGIN_PX
+import com.beleavemebe.solevarnya.ui.fragments.Constants.ITEM_MARGIN
 import com.beleavemebe.solevarnya.ui.fragments.search.RecyclerFragment
 import com.beleavemebe.solevarnya.ui.fragments.search.decoration.GridMarginDecoration
 
@@ -21,7 +21,7 @@ class SubjectsFragment : RecyclerFragment<Subject>() {
             layoutManager = GridLayoutManager(requireContext(), SUBJECTS_GRID_COLS, GridLayoutManager.VERTICAL, false)
                 .apply {
                     spanSizeLookup = configureSpanSizeLookup()
-                    addItemDecoration(GridMarginDecoration(ITEM_DEFAULT_MARGIN_PX))
+                    addItemDecoration(GridMarginDecoration(ITEM_MARGIN))
                 }
         }
     }

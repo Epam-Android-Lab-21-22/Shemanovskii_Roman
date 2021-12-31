@@ -38,10 +38,23 @@
     <string name="discrete_mathematics">Дискретная математика</string>
     <string name="programming">Программирование</string>
     <string name="economics">Экономика</string>
-    <string name="calculus">Матан</string>
+    <string name="calculus">Математический анализ</string>
     <string name="linear_algebra">Линейная алгебра</string>
     <string name="computer_system_architecture">Архитектура ЭВМ</string>
     <string name="algorithms_and_data_structures">Алгоритмы и структуры данных</string>
     <string name="vcs">Системы контроля версий</string>
     <string name="physical_training">Физическая культура</string>
+    <string name="timetable">Расписание</string>
+    <string name="seminar">Семинар</string>
+    <string name="lecture">Лекция</string>
+    <string name="monday">Понедельник</string>
+    <string name="tuesday">Вторник</string>
+    <string name="wednesday">Среда</string>
+    <string name="thursday">Четверг</string>
+    <string name="friday">Пятница</string>
+    <string name="saturday">Суббота</string>
+    <string name="sunday">Воскресенье</string>
+    <string name="hour_minute_placeholder">%1$s:%2$s</string>
+    <string name="find">Найти</string>
+    <string name="long_dash">—</string>
 </resources>

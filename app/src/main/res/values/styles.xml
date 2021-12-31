@@ -9,6 +9,14 @@
         <item name="android:textSize">@dimen/text_size_default</item>
     </style>
 
+    <style name="TimetableItemTitle" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">@dimen/text_size_default_plus</item>
+    </style>
+
+    <style name="TimetableItemSubtitle" parent="">
+        <item name="android:textSize">@dimen/text_size_default_minus</item>
+    </style>
+
     <style name="ItemSubtitle" parent="">
         <item name="android:textSize">13sp</item>
         <item name="android:textStyle">normal</item>
