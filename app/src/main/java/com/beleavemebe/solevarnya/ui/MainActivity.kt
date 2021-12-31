@@ -26,6 +26,10 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = configureTopBar()
         NavigationUI.setupWithNavController(binding.mainToolbar, navController, appBarConfiguration)
         setSupportActionBar(binding.mainToolbar)
+        binding.appBarLayout.outlineProvider = null
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            binding.appBarLayout.setExpanded(true, false)
+        }
     }
 
     private fun configureTopBar(): AppBarConfiguration {
