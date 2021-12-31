@@ -9,18 +9,33 @@ import com.beleavemebe.solevarnya.databinding.ListItemAddTeacherBinding
 import com.beleavemebe.solevarnya.databinding.ListItemTeacherBinding
 import com.beleavemebe.solevarnya.model.Teacher
 import com.beleavemebe.solevarnya.ui.fragments.search.GenericDiffUtilItemCallback
+import com.beleavemebe.solevarnya.util.illegalArgument
 import com.bumptech.glide.Glide
 import java.lang.IllegalArgumentException
 
 class TeacherAdapter(
     private val onAddTeacherItemClicked: () -> Unit
 ) : ListAdapter<Teacher, RecyclerView.ViewHolder>(teacherDiffCallback) {
+    enum class TeacherViewType {
+        TEACHER,
+        ADD_TEACHER,
+    }
+
+    override fun getItemCount(): Int =
+        super.getItemCount() + 1
+
+    override fun getItemViewType(position: Int): Int =
+        when (position) {
+            itemCount - 1 -> TeacherViewType.ADD_TEACHER.ordinal
+            else -> TeacherViewType.TEACHER.ordinal
+        }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             TeacherViewType.ADD_TEACHER.ordinal -> createAddTeacherViewHolder(inflater, parent)
             TeacherViewType.TEACHER.ordinal -> createTeacherViewHolder(inflater, parent)
-            else -> throw IllegalArgumentException("Unknown view type $viewType")
+            else -> illegalArgument("Unknown view type $viewType")
         }
     }
 
@@ -36,49 +51,12 @@ class TeacherAdapter(
         }
     }
 
-    override fun getItemViewType(position: Int): Int =
-        when (position) {
-            itemCount - 1 -> TeacherViewType.ADD_TEACHER
-            else -> TeacherViewType.TEACHER
-        }.ordinal
-
-    override fun getItemCount(): Int {
-        return super.getItemCount() + 1
-    }
-
-    private fun createAddTeacherViewHolder(
-        inflater: LayoutInflater,
-        parent: ViewGroup
-    ): AddTeacherViewHolder {
-        val binding = ListItemAddTeacherBinding.inflate(inflater, parent, false)
-        return AddTeacherViewHolder(binding)
-    }
-
     private fun createTeacherViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup
     ): TeacherViewHolder {
         val binding = ListItemTeacherBinding.inflate(inflater, parent, false)
         return TeacherViewHolder(binding)
-    }
-
-    companion object {
-        private val teacherDiffCallback = GenericDiffUtilItemCallback<Teacher>()
-    }
-
-    enum class TeacherViewType {
-        TEACHER,
-        ADD_TEACHER,
-    }
-
-    class AddTeacherViewHolder(
-        private val binding: ListItemAddTeacherBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(onAddTeacherItemClicked: () -> Unit) {
-            binding.root.setOnClickListener {
-                onAddTeacherItemClicked()
-            }
-        }
     }
 
     class TeacherViewHolder(
@@ -96,6 +74,28 @@ class TeacherAdapter(
             binding.tvRank.text = c.getString(teacher.rank.stringResId)
             binding.tvLocation.text = teacher.location
         }
+    }
+
+    private fun createAddTeacherViewHolder(
+        inflater: LayoutInflater,
+        parent: ViewGroup
+    ): AddTeacherViewHolder {
+        val binding = ListItemAddTeacherBinding.inflate(inflater, parent, false)
+        return AddTeacherViewHolder(binding)
+    }
+
+    class AddTeacherViewHolder(
+        private val binding: ListItemAddTeacherBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(onAddTeacherItemClicked: () -> Unit) {
+            binding.root.setOnClickListener {
+                onAddTeacherItemClicked()
+            }
+        }
+    }
+
+    companion object {
+        private val teacherDiffCallback = GenericDiffUtilItemCallback<Teacher>()
     }
 }
 

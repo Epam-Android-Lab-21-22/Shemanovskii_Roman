@@ -2,7 +2,6 @@ package com.beleavemebe.solevarnya.repository
 
 import android.content.Context
 import com.beleavemebe.solevarnya.R
-import com.beleavemebe.solevarnya.model.Student
 import com.beleavemebe.solevarnya.model.Teacher
 import com.beleavemebe.solevarnya.model.enums.AcademicRank
 import com.beleavemebe.solevarnya.util.getFaker

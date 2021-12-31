@@ -27,10 +27,6 @@ class StudentAdapter(
         holder.bind(student)
     }
 
-    companion object {
-        private val studentDiffCallback = GenericDiffUtilItemCallback<Student>()
-    }
-
     class StudentViewHolder(
         private val binding: ListItemStudentBinding,
         private val onMoreButtonClicked: (ImageButton, Student) -> Unit
@@ -59,5 +55,9 @@ class StudentAdapter(
                 }
             }
         }
+    }
+
+    companion object {
+        private val studentDiffCallback = GenericDiffUtilItemCallback<Student>()
     }
 }

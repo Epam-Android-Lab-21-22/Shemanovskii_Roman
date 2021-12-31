@@ -10,68 +10,83 @@ import com.beleavemebe.solevarnya.databinding.ListItemTimetableEntryBinding
 import com.beleavemebe.solevarnya.model.TimetableEntry
 import com.beleavemebe.solevarnya.model.enums.DayOfWeek
 import com.beleavemebe.solevarnya.util.doubleFigured
-import java.lang.IllegalArgumentException
+import com.beleavemebe.solevarnya.util.illegalArgument
 
 class TimetableAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var itemsAndHeaders = mutableListOf<Any>()
+    companion object {
+        const val VIEW_TYPE_LESSON = 0
+        const val VIEW_TYPE_HEADER = 1
+    }
+
+    sealed class Entry(val id: Int) {
+        class Lesson(val entry: TimetableEntry) : Entry(VIEW_TYPE_LESSON)
+        class Header(val dayOfWeek: DayOfWeek) : Entry(VIEW_TYPE_HEADER)
+    }
+
+    private val itemsAndHeaders = mutableListOf<Entry>()
 
     fun updateItems(items: List<TimetableEntry>) {
-        itemsAndHeaders = insertHeaders(items)
+        itemsAndHeaders.clear()
+        itemsAndHeaders.addAll(insertHeaders(items))
     }
 
     fun itemAt(i: Int) = itemsAndHeaders.getOrNull(i)
 
-    private fun insertHeaders(items: List<TimetableEntry>): MutableList<Any> {
-        val itemsGroupedByDayOfWeek = items.groupBy { it.dayOfWeek }
-        return itemsGroupedByDayOfWeek.keys
-            .flatMap { key ->
-                listOf(key) + itemsGroupedByDayOfWeek[key]!!
-            }.toMutableList()
-    }
-
-    override fun getItemCount(): Int = itemsAndHeaders.size
+    override fun getItemCount(): Int =
+        itemsAndHeaders.size
 
     override fun getItemViewType(position: Int): Int =
-        when (itemsAndHeaders[position]) {
-            is DayOfWeek -> TimetableEntryViewType.DAY_OF_WEEK.ordinal
-            is TimetableEntry -> TimetableEntryViewType.TIMETABLE_ENTRY.ordinal
-            else -> throw IllegalArgumentException("Unknown type encountered in item pile")
-        }
+        itemsAndHeaders[position].id
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            TimetableEntryViewType.DAY_OF_WEEK.ordinal -> createDayOfWeekViewHolder(inflater, parent)
-            TimetableEntryViewType.TIMETABLE_ENTRY.ordinal -> createTimetableEntryViewHolder(inflater, parent)
-            else -> throw IllegalArgumentException("Unknown view type $viewType")
+            VIEW_TYPE_HEADER -> createHeader(inflater, parent)
+            VIEW_TYPE_LESSON -> createLesson(inflater, parent)
+            else -> illegalArgument("Unknown view type $viewType")
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = itemsAndHeaders[position]
         when (holder) {
-            is DayOfWeekViewHolder -> holder.bind(item as DayOfWeek)
-            is TimetableEntryViewHolder -> {
-                val isLastLessonOfTheDay = itemAt(position + 1).let { it == null || it is DayOfWeek }
-                holder.bind(item as TimetableEntry, isLastLessonOfTheDay)
-            }
+            is HeaderViewHolder -> bindHeader(holder, item)
+            is LessonViewHolder -> bindLesson(holder, item, position)
         }
     }
 
-    enum class TimetableEntryViewType {
-        TIMETABLE_ENTRY,
-        DAY_OF_WEEK
+    private fun insertHeaders(items: List<TimetableEntry>): MutableList<Entry> {
+        val groupedByDay = items.groupBy { it.dayOfWeek }
+        return groupedByDay.keys
+            .flatMap { day ->
+                mutableListOf<Entry>().apply {
+                    add(Entry.Header(day))
+                    addAll(
+                        groupedByDay[day]!!.map { Entry.Lesson(it) }
+                    )
+                }
+            }.toMutableList()
     }
 
-    private fun createTimetableEntryViewHolder(
+    private fun createLesson(
         inflater: LayoutInflater,
         parent: ViewGroup
-    ): TimetableEntryViewHolder {
+    ): LessonViewHolder {
         val binding = ListItemTimetableEntryBinding.inflate(inflater, parent, false)
-        return TimetableEntryViewHolder(binding)
+        return LessonViewHolder(binding)
     }
 
-    inner class TimetableEntryViewHolder(
+    private fun bindLesson(
+        holder: LessonViewHolder,
+        item: Entry,
+        position: Int
+    ) {
+        val entry = (item as Entry.Lesson).entry
+        val isLastToday = itemAt(position + 1).let { it == null || it is Entry.Header }
+        holder.bind(entry, isLastToday)
+    }
+
+    inner class LessonViewHolder(
         private val binding: ListItemTimetableEntryBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(entry: TimetableEntry, isLastLessonOfTheDay: Boolean) {
@@ -105,15 +120,20 @@ class TimetableAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    private fun createDayOfWeekViewHolder(
+    private fun createHeader(
         inflater: LayoutInflater,
         parent: ViewGroup
-    ): DayOfWeekViewHolder {
+    ): HeaderViewHolder {
         val binding = ListItemDayOfWeekBinding.inflate(inflater, parent, false)
-        return DayOfWeekViewHolder(binding)
+        return HeaderViewHolder(binding)
     }
 
-    inner class DayOfWeekViewHolder(
+    private fun bindHeader(holder: HeaderViewHolder, item: Entry) {
+        val dayOfWeek = (item as Entry.Header).dayOfWeek
+        holder.bind(dayOfWeek)
+    }
+
+    inner class HeaderViewHolder(
         private val binding: ListItemDayOfWeekBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(dayOfWeek: DayOfWeek) {

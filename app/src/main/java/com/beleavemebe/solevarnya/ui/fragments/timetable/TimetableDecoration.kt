@@ -15,12 +15,15 @@ class TimetableDecoration(
         state: RecyclerView.State
     ) {
         val adapter = parent.adapter as? TimetableAdapter
-
         val position = parent.getChildAdapterPosition(view)
+        val item = adapter?.itemAt(position) ?: return
 
-        when (adapter?.itemAt(position)) {
-            is DayOfWeek -> {
+        when (item) {
+            is TimetableAdapter.Entry.Header -> {
                 outRect.top = margin
+            }
+            is TimetableAdapter.Entry.Lesson -> {
+                /* No margins */
             }
         }
     }

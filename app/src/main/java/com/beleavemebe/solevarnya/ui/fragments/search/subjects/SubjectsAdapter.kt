@@ -23,10 +23,6 @@ class SubjectsAdapter :
         holder.bind(item)
     }
 
-    companion object {
-        private val subjectDiffCallback = GenericDiffUtilItemCallback<Subject>()
-    }
-
     class SubjectViewHolder(
         private val binding: ListItemSubjectBinding
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -44,6 +40,10 @@ class SubjectsAdapter :
             binding.tvSubjectEnrolled.text =
                 c.getString(R.string.enrolled_placeholder, subject.enrolled)
         }
+    }
+
+    companion object {
+        private val subjectDiffCallback = GenericDiffUtilItemCallback<Subject>()
     }
 }
 

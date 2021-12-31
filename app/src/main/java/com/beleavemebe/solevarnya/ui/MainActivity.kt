@@ -16,18 +16,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val navController = supportFragmentManager.findFragmentById(R.id.nav_host)!!.findNavController()
-
+        val navController =
+            supportFragmentManager.findFragmentById(R.id.nav_host)!!.findNavController()
         setupToolbar(navController)
-        setSupportActionBar(binding.mainToolbar)
-
         setupBottomNavigation(navController)
     }
 
     private fun setupToolbar(navController: NavController) {
         val appBarConfiguration = configureTopBar()
         NavigationUI.setupWithNavController(binding.mainToolbar, navController, appBarConfiguration)
+        setSupportActionBar(binding.mainToolbar)
     }
 
     private fun configureTopBar(): AppBarConfiguration {
