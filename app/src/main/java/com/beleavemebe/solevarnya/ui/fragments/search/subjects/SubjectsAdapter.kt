@@ -10,8 +10,7 @@ import com.beleavemebe.solevarnya.model.Subject
 import com.beleavemebe.solevarnya.ui.fragments.search.GenericDiffUtilItemCallback
 import com.bumptech.glide.Glide
 
-class SubjectsAdapter :
-    ListAdapter<Subject, SubjectsAdapter.SubjectViewHolder>(subjectDiffCallback) {
+class SubjectsAdapter : ListAdapter<Subject, SubjectsAdapter.SubjectViewHolder>(subjectDiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubjectViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ListItemSubjectBinding.inflate(inflater, parent, false)

@@ -10,7 +10,7 @@ object SubjectRepository : ItemRepository<Subject> {
     private lateinit var hardcodedSubjects: MutableList<Subject>
 
     override fun fetchAll(): List<Subject> =
-        hardcodedSubjects.shuffled()
+        hardcodedSubjects
 
     fun fetchRandom(): Subject =
         hardcodedSubjects.random()
