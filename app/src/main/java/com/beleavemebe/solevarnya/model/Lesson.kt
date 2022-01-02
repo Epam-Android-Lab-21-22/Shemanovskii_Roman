@@ -2,11 +2,13 @@ package com.beleavemebe.solevarnya.model
 
 import com.beleavemebe.solevarnya.model.enums.DayOfWeek
 import com.beleavemebe.solevarnya.model.enums.LessonType
+import com.beleavemebe.solevarnya.repository.SubjectRepository
+import com.beleavemebe.solevarnya.repository.TeacherRepository
 
-data class TimetableEntry(
-    val subject: Subject,
+data class Lesson(
+    val subject: Subject = SubjectRepository.fetchRandom(),
+    val teacher: Teacher = TeacherRepository.fetchRandom(),
     val lessonType: LessonType,
-    val teacher: Teacher,
     val dayOfWeek: DayOfWeek,
     val hour: Int,
     val minute: Int,

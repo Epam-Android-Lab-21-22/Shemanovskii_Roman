@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.databinding.ListItemDayOfWeekBinding
 import com.beleavemebe.solevarnya.databinding.ListItemTimetableEntryBinding
-import com.beleavemebe.solevarnya.model.TimetableEntry
+import com.beleavemebe.solevarnya.model.Lesson
 import com.beleavemebe.solevarnya.model.enums.DayOfWeek
 import com.beleavemebe.solevarnya.util.doubleFigured
 import com.beleavemebe.solevarnya.util.illegalArgument
@@ -18,19 +18,20 @@ class TimetableAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         const val VIEW_TYPE_HEADER = 1
     }
 
-    sealed class Entry(val id: Int) {
-        class Lesson(val entry: TimetableEntry) : Entry(VIEW_TYPE_LESSON)
-        class Header(val dayOfWeek: DayOfWeek) : Entry(VIEW_TYPE_HEADER)
+    sealed class TimetableEntry(val id: Int) {
+        class LessonEntry(val entry: Lesson) : TimetableEntry(VIEW_TYPE_LESSON)
+        class Header(val dayOfWeek: DayOfWeek) : TimetableEntry(VIEW_TYPE_HEADER)
     }
 
-    private val itemsAndHeaders = mutableListOf<Entry>()
+    private val itemsAndHeaders = mutableListOf<TimetableEntry>()
 
-    fun updateItems(items: List<TimetableEntry>) {
+    fun updateItems(items: List<Lesson>) {
         itemsAndHeaders.clear()
         itemsAndHeaders.addAll(insertHeaders(items))
     }
 
-    fun itemAt(i: Int) = itemsAndHeaders.getOrNull(i)
+    fun itemAt(i: Int): TimetableEntry? =
+        itemsAndHeaders.getOrNull(i)
 
     override fun getItemCount(): Int =
         itemsAndHeaders.size
@@ -55,14 +56,14 @@ class TimetableAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    private fun insertHeaders(items: List<TimetableEntry>): MutableList<Entry> {
+    private fun insertHeaders(items: List<Lesson>): MutableList<TimetableEntry> {
         val groupedByDay = items.groupBy { it.dayOfWeek }
         return groupedByDay.keys
             .flatMap { day ->
-                mutableListOf<Entry>().apply {
-                    add(Entry.Header(day))
+                mutableListOf<TimetableEntry>().apply {
+                    add(TimetableEntry.Header(day))
                     addAll(
-                        groupedByDay[day]!!.map { Entry.Lesson(it) }
+                        groupedByDay[day]!!.map { TimetableEntry.LessonEntry(it) }
                     )
                 }
             }.toMutableList()
@@ -78,18 +79,18 @@ class TimetableAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private fun bindLesson(
         holder: LessonViewHolder,
-        item: Entry,
+        item: TimetableEntry,
         position: Int
     ) {
-        val entry = (item as Entry.Lesson).entry
-        val isLastToday = itemAt(position + 1).let { it == null || it is Entry.Header }
+        val entry = (item as TimetableEntry.LessonEntry).entry
+        val isLastToday = itemAt(position + 1).let { it == null || it is TimetableEntry.Header }
         holder.bind(entry, isLastToday)
     }
 
     inner class LessonViewHolder(
         private val binding: ListItemTimetableEntryBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(entry: TimetableEntry, isLastLessonOfTheDay: Boolean) {
+        fun bind(entry: Lesson, isLastLessonOfTheDay: Boolean) {
             val c = binding.root.context
 
             binding.tvSubject.text = entry.subject.name
@@ -128,8 +129,8 @@ class TimetableAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return HeaderViewHolder(binding)
     }
 
-    private fun bindHeader(holder: HeaderViewHolder, item: Entry) {
-        val dayOfWeek = (item as Entry.Header).dayOfWeek
+    private fun bindHeader(holder: HeaderViewHolder, item: TimetableEntry) {
+        val dayOfWeek = (item as TimetableEntry.Header).dayOfWeek
         holder.bind(dayOfWeek)
     }
 
