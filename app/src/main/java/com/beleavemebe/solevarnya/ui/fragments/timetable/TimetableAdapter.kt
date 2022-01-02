@@ -2,7 +2,6 @@ package com.beleavemebe.solevarnya.ui.fragments.timetable
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.beleavemebe.solevarnya.R
@@ -13,14 +12,11 @@ import com.beleavemebe.solevarnya.model.Lesson
 import com.beleavemebe.solevarnya.model.enums.DayOfWeek
 import com.beleavemebe.solevarnya.util.doubleFigured
 import com.beleavemebe.solevarnya.util.illegalArgument
+import java.util.*
 
-class TimetableAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    companion object {
-        const val VIEW_TYPE_LESSON = 0
-        const val VIEW_TYPE_HEADER = 1
-        const val VIEW_TYPE_LOAD_MORE = 2
-    }
-
+class TimetableAdapter(
+    private val timetable: List<Lesson>
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     sealed class TimetableEntry(val id: Int) {
         class LessonEntry(val lesson: Lesson) : TimetableEntry(VIEW_TYPE_LESSON)
         class Header(val dayOfWeek: DayOfWeek) : TimetableEntry(VIEW_TYPE_HEADER)
@@ -29,9 +25,30 @@ class TimetableAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val items = mutableListOf<TimetableEntry>()
 
-    fun updateItems(lessons: List<Lesson>) {
-        items.clear()
-        items.addAll(lessons.toDisplayableItems())
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        loadTimetable()
+    }
+
+    private fun loadTimetable() {
+        val today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
+
+        val filtered =
+            timetable.filter {
+                it.dayOfWeek.ordinal >= today + 1
+            }.takeIf {
+                it.isNotEmpty()
+            } ?: timetable
+
+        items.addAll(filtered.toDisplayableItems())
+        notifyItemRangeInserted(0, itemCount)
+    }
+
+    private fun loadMore() {
+        val lastIndex = items.lastIndex
+        items.removeLast()
+        notifyItemRemoved(lastIndex)
+        items.addAll(timetable.toDisplayableItems())
+        notifyItemRangeInserted(lastIndex, items.lastIndex - lastIndex)
     }
 
     fun itemAt(i: Int): TimetableEntry? =
@@ -173,13 +190,15 @@ class TimetableAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind() {
             binding.btnLoadMore.setOnClickListener {
-                Toast.makeText(
-                    binding.root.context,
-                    "Not yet implemented",
-                    Toast.LENGTH_SHORT
-                ).show()
+                loadMore()
             }
         }
+    }
+
+    companion object {
+        const val VIEW_TYPE_LESSON = 0
+        const val VIEW_TYPE_HEADER = 1
+        const val VIEW_TYPE_LOAD_MORE = 2
     }
 }
 

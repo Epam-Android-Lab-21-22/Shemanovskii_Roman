@@ -26,9 +26,8 @@ class TimetableFragment : Fragment(R.layout.fragment_timetable) {
         binding.rvTimetable.apply {
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(TimetableDecoration(ITEM_MARGIN))
-            val timetableAdapter = TimetableAdapter()
+            val timetableAdapter = TimetableAdapter(items)
             adapter = timetableAdapter
-            timetableAdapter.updateItems(items)
         }
     }
 }
