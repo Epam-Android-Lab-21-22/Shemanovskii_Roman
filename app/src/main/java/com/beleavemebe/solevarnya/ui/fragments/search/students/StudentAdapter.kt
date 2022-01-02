@@ -3,10 +3,8 @@ package com.beleavemebe.solevarnya.ui.fragments.search.students
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageButton
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import by.kirich1409.viewbindingdelegate.fragmentViewBinding
 import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.databinding.ListItemStudentBinding
 import com.beleavemebe.solevarnya.model.Student
@@ -49,10 +47,11 @@ class StudentAdapter(
                 c.getString(student.degree.stringResId),
                 student.group
             )
-            with(binding.ibMore) {
-                setOnClickListener {
-                    onMoreButtonClicked(this, student)
-                }
+            binding.ibMore.setOnClickListener {
+                onMoreButtonClicked(binding.ibMore, student)
+            }
+            binding.root.setOnClickListener {
+                binding.tvDegreeGroup.text = student.quote
             }
         }
     }

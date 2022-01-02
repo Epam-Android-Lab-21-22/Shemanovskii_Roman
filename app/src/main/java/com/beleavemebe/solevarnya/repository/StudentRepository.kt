@@ -28,7 +28,9 @@ object StudentRepository : ItemRepository<Student> {
             val groupNumber = faker.number().numberBetween(1, 6)
             val group = "$groupYear$groupProgram$groupNumber"
 
-            Student(name, surname, degree, group)
+            val quote = faker.twinPeaks().quote()
+
+            Student(name, surname, degree, group, quote)
         }.take(12).toMutableList()
     }
 

@@ -7,5 +7,6 @@ data class Student(
     val surname: String,
     val degree: Degree,
     val group: String,
+    val quote: String,
     val avatarUrl: String = PepeAvatars.getRandomAvatarUrl(),
 )
