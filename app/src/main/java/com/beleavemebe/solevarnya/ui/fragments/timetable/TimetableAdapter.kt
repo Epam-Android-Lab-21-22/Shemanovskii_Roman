@@ -2,11 +2,13 @@ package com.beleavemebe.solevarnya.ui.fragments.timetable
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.databinding.ListItemDayOfWeekBinding
-import com.beleavemebe.solevarnya.databinding.ListItemTimetableEntryBinding
+import com.beleavemebe.solevarnya.databinding.ListItemLessonBinding
+import com.beleavemebe.solevarnya.databinding.ListItemLoadMoreBinding
 import com.beleavemebe.solevarnya.model.Lesson
 import com.beleavemebe.solevarnya.model.enums.DayOfWeek
 import com.beleavemebe.solevarnya.util.doubleFigured
@@ -16,48 +18,52 @@ class TimetableAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     companion object {
         const val VIEW_TYPE_LESSON = 0
         const val VIEW_TYPE_HEADER = 1
+        const val VIEW_TYPE_LOAD_MORE = 2
     }
 
     sealed class TimetableEntry(val id: Int) {
-        class LessonEntry(val entry: Lesson) : TimetableEntry(VIEW_TYPE_LESSON)
+        class LessonEntry(val lesson: Lesson) : TimetableEntry(VIEW_TYPE_LESSON)
         class Header(val dayOfWeek: DayOfWeek) : TimetableEntry(VIEW_TYPE_HEADER)
+        object LoadMore : TimetableEntry(VIEW_TYPE_LOAD_MORE)
     }
 
-    private val itemsAndHeaders = mutableListOf<TimetableEntry>()
+    private val items = mutableListOf<TimetableEntry>()
 
-    fun updateItems(items: List<Lesson>) {
-        itemsAndHeaders.clear()
-        itemsAndHeaders.addAll(insertHeaders(items))
+    fun updateItems(lessons: List<Lesson>) {
+        items.clear()
+        items.addAll(lessons.toDisplayableItems())
     }
 
     fun itemAt(i: Int): TimetableEntry? =
-        itemsAndHeaders.getOrNull(i)
+        items.getOrNull(i)
 
     override fun getItemCount(): Int =
-        itemsAndHeaders.size
+        items.size
 
     override fun getItemViewType(position: Int): Int =
-        itemsAndHeaders[position].id
+        items[position].id
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             VIEW_TYPE_HEADER -> createHeader(inflater, parent)
             VIEW_TYPE_LESSON -> createLesson(inflater, parent)
+            VIEW_TYPE_LOAD_MORE -> createLoadMore(inflater, parent)
             else -> illegalArgument("Unknown view type $viewType")
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = itemsAndHeaders[position]
+        val item = items[position]
         when (holder) {
             is HeaderViewHolder -> bindHeader(holder, item)
             is LessonViewHolder -> bindLesson(holder, item, position)
+            is LoadMoreViewHolder -> bindLoadMore(holder)
         }
     }
 
-    private fun insertHeaders(items: List<Lesson>): MutableList<TimetableEntry> {
-        val groupedByDay = items.groupBy { it.dayOfWeek }
+    private fun List<Lesson>.toDisplayableItems(): MutableList<TimetableEntry> {
+        val groupedByDay = this.groupBy { lesson -> lesson.dayOfWeek }
         return groupedByDay.keys
             .flatMap { day ->
                 mutableListOf<TimetableEntry>().apply {
@@ -66,14 +72,16 @@ class TimetableAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                         groupedByDay[day]!!.map { TimetableEntry.LessonEntry(it) }
                     )
                 }
-            }.toMutableList()
+            }.toMutableList().apply {
+                add(TimetableEntry.LoadMore)
+            }
     }
 
     private fun createLesson(
         inflater: LayoutInflater,
         parent: ViewGroup
     ): LessonViewHolder {
-        val binding = ListItemTimetableEntryBinding.inflate(inflater, parent, false)
+        val binding = ListItemLessonBinding.inflate(inflater, parent, false)
         return LessonViewHolder(binding)
     }
 
@@ -82,34 +90,38 @@ class TimetableAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         item: TimetableEntry,
         position: Int
     ) {
-        val entry = (item as TimetableEntry.LessonEntry).entry
-        val isLastToday = itemAt(position + 1).let { it == null || it is TimetableEntry.Header }
-        holder.bind(entry, isLastToday)
+        val lesson = (item as TimetableEntry.LessonEntry).lesson
+        val isLastToday =
+            itemAt(position + 1).let {
+                it is TimetableEntry.Header || it is TimetableEntry.LoadMore
+            }
+
+        holder.bind(lesson, isLastToday)
     }
 
     inner class LessonViewHolder(
-        private val binding: ListItemTimetableEntryBinding
+        private val binding: ListItemLessonBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(entry: Lesson, isLastLessonOfTheDay: Boolean) {
+        fun bind(lesson: Lesson, isLastLessonOfTheDay: Boolean) {
             val c = binding.root.context
 
-            binding.tvSubject.text = entry.subject.name
+            binding.tvSubject.text = lesson.subject.name
 
             binding.tvTeacher.text =
-                c.getString(R.string.single_space_placeholder, entry.teacher.name, entry.teacher.surname)
+                c.getString(R.string.single_space_placeholder, lesson.teacher.name, lesson.teacher.surname)
 
             binding.tvLessonType.text =
-                c.getString(entry.lessonType.stringRes)
+                c.getString(lesson.lessonType.stringRes)
 
             binding.tvHourMinuteBeginning.text =
                 c.getString(
                     R.string.hour_minute_placeholder,
-                    entry.hour.doubleFigured(),
-                    entry.minute.doubleFigured()
+                    lesson.hour.doubleFigured(),
+                    lesson.minute.doubleFigured()
                 )
 
             binding.tvHourMinuteEnd.text =
-                entry.calcEndTime().run {
+                lesson.calcEndTime().run {
                     c.getString(
                         R.string.hour_minute_placeholder,
                         first.doubleFigured(),
@@ -143,4 +155,31 @@ class TimetableAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.tvDayOfWeek.text = c.getString(dayOfWeek.stringRes)
         }
     }
+
+    private fun createLoadMore(
+        inflater: LayoutInflater,
+        parent: ViewGroup
+    ): RecyclerView.ViewHolder {
+        val binding = ListItemLoadMoreBinding.inflate(inflater, parent, false)
+        return LoadMoreViewHolder(binding)
+    }
+
+    private fun bindLoadMore(holder: LoadMoreViewHolder) {
+        holder.bind()
+    }
+
+    inner class LoadMoreViewHolder(
+        private val binding: ListItemLoadMoreBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind() {
+            binding.btnLoadMore.setOnClickListener {
+                Toast.makeText(
+                    binding.root.context,
+                    "Not yet implemented",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
 }
+

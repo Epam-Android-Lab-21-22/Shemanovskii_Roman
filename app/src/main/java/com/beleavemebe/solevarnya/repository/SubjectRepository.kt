@@ -5,7 +5,6 @@ import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.model.Subject
 import com.beleavemebe.solevarnya.util.getFaker
 
-
 object SubjectRepository : ItemRepository<Subject> {
     private lateinit var hardcodedSubjects: MutableList<Subject>
 
@@ -21,7 +20,7 @@ object SubjectRepository : ItemRepository<Subject> {
 
         hardcodedSubjects = mutableListOf(
             Subject(context.getString(R.string.english), 0, randomEnrolledNumber(), "https://www.hse.ru/mirror/pubs/share/direct/367811816"),
-            Subject(context.getString(R.string.discrete_mathematics), 4, randomEnrolledNumber(), "https://lh3.googleusercontent.com/proxy/ILjO24ALX0ofnM4GPGlgW1wROrBDyAuL7M7J_SnrYkrDkgyE0PI-jHnjMPYWSEO2n0Ssh-B3-ogora5EQ7l0HlN_aYByqD0N-Rhg4cXlqbyG8udhggpRZ60"),
+            Subject(context.getString(R.string.discrete_mathematics), 4, randomEnrolledNumber(), "https://topspiski.com/wp-content/uploads/2019/12/megamozg.jpg"),
             Subject(context.getString(R.string.programming), 5, randomEnrolledNumber(), "https://nnov.hse.ru/mirror/pubs/share/direct/222460939.jpg"),
             Subject(context.getString(R.string.economics), 4, randomEnrolledNumber(), "https://www.hse.ru/mirror/pubs/share/direct/425743085.jpg"),
             Subject(context.getString(R.string.calculus), 4, randomEnrolledNumber(), "https://www.hse.ru/mirror/pubs/share/direct/417937992.jpg"),

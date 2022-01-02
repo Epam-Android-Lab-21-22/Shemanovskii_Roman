@@ -24,6 +24,9 @@ class TimetableDecoration(
             is TimetableAdapter.TimetableEntry.LessonEntry -> {
                 /* No margins */
             }
+            is TimetableAdapter.TimetableEntry.LoadMore -> {
+                outRect.bottom = margin
+            }
         }
     }
 }
