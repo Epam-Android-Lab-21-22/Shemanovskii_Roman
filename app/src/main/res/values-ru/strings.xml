@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="students">Студенты</string>
+    <string name="bachelors">Бакалавриат</string>
+    <string name="masters">Магистратура</string>
+    <string name="aspirants">Аспирантура</string>
+    <string name="teachers">Преподаватели</string>
+    <string name="assistant">Ассистент</string>
+    <string name="docent">Доцент</string>
+    <string name="professor">Профессор</string>
+    <string name="subjects">Дисциплины</string>
+    <string name="expel">Отчислить</string>
+    <string name="list_is_empty">Список пуст</string>
+    <string name="credits_placeholder">Кредитов: %1$d</string>
+    <string name="enrolled_placeholder">Учащихся: %1$d</string>
+
+    <string-array name="array_cities">
+        <item>Москва</item>
+        <item>Санкт-Петербург</item>
+        <item>Нижний Новгород</item>
+        <item>Пермь</item>
+    </string-array>
+
+    <string-array name="array_programs">
+        <item>ПИ</item>
+        <item>ФМ</item>
+        <item>ПМИ</item>
+        <item>ЮР</item>
+        <item>ЭК</item>
+        <item>БИ</item>
+    </string-array>
+
+    <string name="english">Английский</string>
+    <string name="discrete_mathematics">Дискретная математика</string>
+    <string name="programming">Программирование</string>
+    <string name="economics">Экономика</string>
+    <string name="calculus">Математический анализ</string>
+    <string name="linear_algebra">Линейная алгебра</string>
+    <string name="computer_system_architecture">Архитектура ЭВМ</string>
+    <string name="algorithms_and_data_structures">Алгоритмы и структуры данных</string>
+    <string name="vcs">Системы контроля версий</string>
+    <string name="physical_training">Физическая культура</string>
+    <string name="timetable">Расписание</string>
+    <string name="seminar">Семинар</string>
+    <string name="lecture">Лекция</string>
+    <string name="monday">Понедельник</string>
+    <string name="tuesday">Вторник</string>
+    <string name="wednesday">Среда</string>
+    <string name="thursday">Четверг</string>
+    <string name="friday">Пятница</string>
+    <string name="saturday">Суббота</string>
+    <string name="sunday">Воскресенье</string>
+    <string name="find">Найти</string>
+</resources>

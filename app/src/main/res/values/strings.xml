@@ -1,60 +1,60 @@
 <resources>
-    <string name="app_name">HSE Recyclers</string>
+    <string name="app_name" translatable="false">HSE Recyclers</string>
+    <string name="single_space_placeholder" translatable="false">%1$s %2$s</string>
+    <string name="hour_minute_placeholder" translatable="false">%1$s:%2$s</string>
+    <string name="long_dash" translatable="false">—</string>
 
-    <string name="students">Студенты</string>
-    <string name="bachelors">Бакалавриат</string>
-    <string name="masters">Магистратура</string>
-    <string name="aspirants">Аспирантура</string>
+    <string name="students">Students</string>
+    <string name="bachelors">Bachelors</string>
+    <string name="masters">Masters</string>
+    <string name="aspirants">Aspirants</string>
 
-    <string name="teachers">Преподаватели</string>
-    <string name="assistant">Ассистент</string>
-    <string name="docent">Доцент</string>
-    <string name="professor">Профессор</string>
+    <string name="teachers">Teachers</string>
+    <string name="assistant">Assistant</string>
+    <string name="docent">Docent</string>
+    <string name="professor">Professor</string>
 
-    <string name="subjects">Дисциплины</string>
-    <string name="single_space_placeholder">%1$s %2$s</string>
+    <string name="subjects">Subjects</string>
     <string name="expel">Отчислить</string>
-    <string name="list_is_empty">Список пуст</string>
-    <string name="credits_placeholder">Кредитов: %1$d</string>
-    <string name="enrolled_placeholder">Учащихся: %1$d</string>
+    <string name="list_is_empty">List is empty</string>
+    <string name="credits_placeholder">Credits: %1$d</string>
+    <string name="enrolled_placeholder">Enrolled: %1$d</string>
 
     <string-array name="array_cities">
-        <item>Москва</item>
-        <item>Санкт-Петербург</item>
-        <item>Нижний Новгород</item>
-        <item>Пермь</item>
+        <item>Moscow</item>
+        <item>Saint-Petersburg</item>
+        <item>Nizhny Novgorod</item>
+        <item>Perm</item>
     </string-array>
 
     <string-array name="array_programs">
-        <item>ПИ</item>
-        <item>ФМ</item>
-        <item>ПМИ</item>
-        <item>ЮР</item>
-        <item>ЭК</item>
-        <item>БИ</item>
+        <item>SE</item>
+        <item>FM</item>
+        <item>AMI</item>
+        <item>LWR</item>
+        <item>EC</item>
+        <item>BI</item>
     </string-array>
 
-    <string name="english">Английский</string>
-    <string name="discrete_mathematics">Дискретная математика</string>
-    <string name="programming">Программирование</string>
-    <string name="economics">Экономика</string>
-    <string name="calculus">Математический анализ</string>
-    <string name="linear_algebra">Линейная алгебра</string>
-    <string name="computer_system_architecture">Архитектура ЭВМ</string>
-    <string name="algorithms_and_data_structures">Алгоритмы и структуры данных</string>
-    <string name="vcs">Системы контроля версий</string>
-    <string name="physical_training">Физическая культура</string>
-    <string name="timetable">Расписание</string>
-    <string name="seminar">Семинар</string>
-    <string name="lecture">Лекция</string>
-    <string name="monday">Понедельник</string>
-    <string name="tuesday">Вторник</string>
-    <string name="wednesday">Среда</string>
-    <string name="thursday">Четверг</string>
-    <string name="friday">Пятница</string>
-    <string name="saturday">Суббота</string>
-    <string name="sunday">Воскресенье</string>
-    <string name="hour_minute_placeholder">%1$s:%2$s</string>
-    <string name="find">Найти</string>
-    <string name="long_dash">—</string>
+    <string name="english">English</string>
+    <string name="discrete_mathematics">Discrete mathematics</string>
+    <string name="programming">Programming</string>
+    <string name="economics">Economics</string>
+    <string name="calculus">Calculus</string>
+    <string name="linear_algebra">Linear algebra</string>
+    <string name="computer_system_architecture">Computer system architecture</string>
+    <string name="algorithms_and_data_structures">Algorithms and data structures</string>
+    <string name="vcs">Version control systems</string>
+    <string name="physical_training">Physical training</string>
+    <string name="timetable">Timetable</string>
+    <string name="seminar">Seminar</string>
+    <string name="lecture">Lecture</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="find">Find</string>
 </resources>
