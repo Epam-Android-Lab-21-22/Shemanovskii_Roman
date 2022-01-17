@@ -14,7 +14,7 @@ class TeachersPresenter(
     }
 
     override fun onAddTeacherClicked(context: Context) {
-        val newTeacher = InMemoryTeacherDataSource.createTeacher(getFaker(), context) // TODO not yet sure how to move it to usecases
+        val newTeacher = Injector.createTeacher()
         val newItemIndex = Injector.addTeacher(newTeacher)
         view?.addTeacher(newTeacher)
         view?.onTeacherAdded(newItemIndex)

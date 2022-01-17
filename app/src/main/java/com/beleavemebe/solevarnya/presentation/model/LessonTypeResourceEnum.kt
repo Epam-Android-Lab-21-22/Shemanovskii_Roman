@@ -4,7 +4,7 @@ import androidx.annotation.StringRes
 import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.core.domain.enums.LessonType
 
-enum class LessonTypeEnum(
+enum class LessonTypeResourceEnum(
     @StringRes val stringRes: Int
 ) {
     SEMINAR(R.string.seminar),
@@ -12,7 +12,7 @@ enum class LessonTypeEnum(
     ;
 
     companion object {
-        fun from(lessonType: LessonType): LessonTypeEnum {
+        fun from(lessonType: LessonType): LessonTypeResourceEnum {
             return when (lessonType) {
                 LessonType.SEMINAR -> SEMINAR
                 LessonType.LECTURE -> LECTURE

@@ -10,8 +10,8 @@ import com.beleavemebe.solevarnya.core.domain.enums.DayOfWeek
 import com.beleavemebe.solevarnya.databinding.ListItemDayOfWeekBinding
 import com.beleavemebe.solevarnya.databinding.ListItemLessonBinding
 import com.beleavemebe.solevarnya.databinding.ListItemLoadMoreBinding
-import com.beleavemebe.solevarnya.presentation.model.DayOfWeekEnum
-import com.beleavemebe.solevarnya.presentation.model.LessonTypeEnum
+import com.beleavemebe.solevarnya.presentation.model.DayOfWeekResourceEnum
+import com.beleavemebe.solevarnya.presentation.model.LessonTypeResourceEnum
 import com.beleavemebe.solevarnya.presentation.util.doubleFigured
 import com.beleavemebe.solevarnya.presentation.util.illegalArgument
 import java.util.*
@@ -134,7 +134,7 @@ class TimetableAdapter(
                 )
 
             binding.tvLessonType.text =
-                c.getString(LessonTypeEnum.from(lesson.lessonType).stringRes)
+                c.getString(LessonTypeResourceEnum.from(lesson.lessonType).stringRes)
 
             binding.tvHourMinuteBeginning.text =
                 c.getString(
@@ -175,7 +175,8 @@ class TimetableAdapter(
         fun bind(dayOfWeek: DayOfWeek) {
             val c = binding.root.context
 
-            binding.tvDayOfWeek.text = c.getString(DayOfWeekEnum.from(dayOfWeek).stringRes)
+            binding.tvDayOfWeek.text =
+                c.getString(DayOfWeekResourceEnum.from(dayOfWeek).stringRes)
         }
     }
 

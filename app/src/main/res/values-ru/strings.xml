@@ -14,21 +14,18 @@
     <string name="credits_placeholder">Кредитов: %1$d</string>
     <string name="enrolled_placeholder">Учащихся: %1$d</string>
 
-    <string-array name="array_cities">
-        <item>Москва</item>
-        <item>Санкт-Петербург</item>
-        <item>Нижний Новгород</item>
-        <item>Пермь</item>
-    </string-array>
 
-    <string-array name="array_programs">
-        <item>ПИ</item>
-        <item>ФМ</item>
-        <item>ПМИ</item>
-        <item>ЮР</item>
-        <item>ЭК</item>
-        <item>БИ</item>
-    </string-array>
+    <string name="location_moscow">Москва</string>
+    <string name="location_saint_petersburg">Санкт-Петербург</string>
+    <string name="location_nizhny_novgorod">Нижний Новгород</string>
+    <string name="location_perm">Пермь</string>
+
+    <string name="program_se">ПИ</string>
+    <string name="program_fm">ФМ</string>
+    <string name="program_ami">ПМИ</string>
+    <string name="program_lwr">ЮР</string>
+    <string name="program_ec">ЭК</string>
+    <string name="program_bi">БИ</string>
 
     <string name="english">Английский</string>
     <string name="discrete_mathematics">Дискретная математика</string>

@@ -6,5 +6,6 @@ interface TeacherDataSource {
     fun fetchAll(): List<Teacher>
     fun add(teacher: Teacher): Int
     fun fetchRandom(): Teacher
+    fun createTeacher(): Teacher
 }
 

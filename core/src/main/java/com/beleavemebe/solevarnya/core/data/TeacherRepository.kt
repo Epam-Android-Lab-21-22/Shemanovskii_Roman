@@ -11,4 +11,7 @@ class TeacherRepository(private val dataSource: TeacherDataSource) {
 
     fun fetchRandom(): Teacher =
         dataSource.fetchRandom()
+
+    fun createTeacher(): Teacher =
+        dataSource.createTeacher()
 }

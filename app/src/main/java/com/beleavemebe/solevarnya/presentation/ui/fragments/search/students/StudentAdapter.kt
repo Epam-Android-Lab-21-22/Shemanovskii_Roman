@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.core.domain.Student
 import com.beleavemebe.solevarnya.databinding.ListItemStudentBinding
-import com.beleavemebe.solevarnya.presentation.model.DegreeEnum
+import com.beleavemebe.solevarnya.presentation.model.DegreeResourceEnum
+import com.beleavemebe.solevarnya.presentation.model.ProgramResourceEnum
 import com.beleavemebe.solevarnya.presentation.ui.fragments.search.GenericDiffUtilItemCallback
 import com.bumptech.glide.Glide
 
@@ -30,29 +31,36 @@ class StudentAdapter(
         private val binding: ListItemStudentBinding,
         private val onMoreButtonClicked: (ImageButton, Student) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(Student: Student) {
+        fun bind(student: Student) {
             val c = binding.root.context
 
             Glide.with(c)
-                .load(Student.avatarUrl)
+                .load(student.avatarUrl)
                 .placeholder(R.drawable.person_placeholder)
                 .into(binding.ivAvatar)
 
-            binding.tvNameSurname.text = c.getString(
+            binding.tvNameSurname.text =
+                c.getString(
                 R.string.single_space_placeholder,
-                Student.name,
-                Student.surname
+                student.name,
+                student.surname
             )
-            binding.tvDegreeGroup.text = c.getString(
-                R.string.single_space_placeholder,
-                c.getString(DegreeEnum.from(Student.degree).stringResId),
-                Student.group
-            )
+            binding.tvDegreeGroup.text =
+                c.getString(
+                    R.string.single_space_placeholder,
+                    c.getString(DegreeResourceEnum.from(student.degree).stringResId),
+                    c.getString(
+                        R.string.group_placeholder,
+                        student.admissionYear,
+                        c.getString(ProgramResourceEnum.from(student.program).stringResId),
+                        student.groupNumber
+                    )
+                )
             binding.ibMore.setOnClickListener {
-                onMoreButtonClicked(binding.ibMore, Student)
+                onMoreButtonClicked(binding.ibMore, student)
             }
             binding.root.setOnClickListener {
-                binding.tvDegreeGroup.text = Student.quote
+                binding.tvDegreeGroup.text = student.quote
             }
         }
     }

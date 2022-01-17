@@ -1,10 +1,9 @@
 package com.beleavemebe.solevarnya.presentation.repository
 
-import android.content.Context
-import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.core.data.TeacherDataSource
 import com.beleavemebe.solevarnya.core.domain.Teacher
 import com.beleavemebe.solevarnya.core.domain.enums.AcademicRank
+import com.beleavemebe.solevarnya.core.domain.enums.CampusLocation
 import com.beleavemebe.solevarnya.presentation.util.getFaker
 import com.github.javafaker.Faker
 
@@ -22,23 +21,26 @@ object InMemoryTeacherDataSource : TeacherDataSource {
     override fun fetchRandom(): Teacher =
         randomTeachers.random()
 
-    fun init(context: Context) {
+    override fun createTeacher(): Teacher =
+        createTeacher(getFaker())
+
+    fun init() {
         val faker = getFaker()
 
         randomTeachers = generateSequence {
-            createTeacher(faker, context)
+            createTeacher(faker)
         }
             .take(7)
             .toMutableList()
     }
 
-    fun createTeacher(faker: Faker, context: Context): Teacher {
+    fun createTeacher(faker: Faker): Teacher {
         val nameSurname = faker.name()
 
         val name = nameSurname.firstName()
         val surname = nameSurname.lastName()
         val rank = AcademicRank.values().random()
-        val location = context.resources.getStringArray(R.array.array_cities).random()
+        val location = CampusLocation.values().random()
         val avatarUrl = AnimeAvatars.getRandomAvatarUrl()
 
         return Teacher(name, surname, rank, location, avatarUrl)

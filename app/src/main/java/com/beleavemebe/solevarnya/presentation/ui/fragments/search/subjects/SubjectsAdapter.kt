@@ -33,7 +33,8 @@ class SubjectsAdapter : ListAdapter<Subject, SubjectsAdapter.SubjectViewHolder>(
                 .placeholder(R.drawable.placeholder)
                 .into(binding.ivBackground)
 
-            binding.tvSubjectTitle.text = subject.name
+            binding.tvSubjectTitle.text =
+                subject.name
             binding.tvSubjectCredits.text =
                 c.getString(R.string.credits_placeholder, subject.credits)
             binding.tvSubjectEnrolled.text =

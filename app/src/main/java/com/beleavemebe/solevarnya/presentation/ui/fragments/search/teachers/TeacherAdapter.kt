@@ -8,7 +8,8 @@ import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.core.domain.Teacher
 import com.beleavemebe.solevarnya.databinding.ListItemAddTeacherBinding
 import com.beleavemebe.solevarnya.databinding.ListItemTeacherBinding
-import com.beleavemebe.solevarnya.presentation.model.AcademicRankEnum
+import com.beleavemebe.solevarnya.presentation.model.AcademicRankResourceEnum
+import com.beleavemebe.solevarnya.presentation.model.CampusLocationResourceEnum
 import com.beleavemebe.solevarnya.presentation.ui.fragments.search.GenericDiffUtilItemCallback
 import com.beleavemebe.solevarnya.presentation.util.illegalArgument
 import com.bumptech.glide.Glide
@@ -70,9 +71,12 @@ class TeacherAdapter(
                 .placeholder(R.drawable.person_placeholder)
                 .into(binding.ivAvatar)
 
-            binding.tvNameSurname.text = c.getString(R.string.single_space_placeholder, teacher.name, teacher.surname)
-            binding.tvRank.text = c.getString(AcademicRankEnum.from(teacher.rank).stringResId)
-            binding.tvLocation.text = teacher.location
+            binding.tvNameSurname.text =
+                c.getString(R.string.single_space_placeholder, teacher.name, teacher.surname)
+            binding.tvRank.text =
+                c.getString(AcademicRankResourceEnum.from(teacher.rank).stringResId)
+            binding.tvLocation.text =
+                c.getString(CampusLocationResourceEnum.from(teacher.location).stringResId)
         }
     }
 

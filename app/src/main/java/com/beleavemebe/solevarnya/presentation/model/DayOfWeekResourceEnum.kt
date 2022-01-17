@@ -4,7 +4,7 @@ import androidx.annotation.StringRes
 import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.core.domain.enums.DayOfWeek
 
-enum class DayOfWeekEnum(
+enum class DayOfWeekResourceEnum(
     @StringRes val stringRes: Int
 ) {
     MONDAY(R.string.monday),
@@ -17,7 +17,7 @@ enum class DayOfWeekEnum(
     ;
 
     companion object {
-        fun from(dayOfWeek: DayOfWeek): DayOfWeekEnum {
+        fun from(dayOfWeek: DayOfWeek): DayOfWeekResourceEnum {
             return when (dayOfWeek) {
                 DayOfWeek.MONDAY -> MONDAY
                 DayOfWeek.TUESDAY -> TUESDAY

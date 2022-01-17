@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">MVP + Clean Arch HSE Recyclers</string>
     <string name="single_space_placeholder" translatable="false">%1$s %2$s</string>
     <string name="hour_minute_placeholder" translatable="false">%1$s:%2$s</string>
+    <string name="group_placeholder" translatable="false">%1$d%2$s%3$d</string>
     <string name="long_dash" translatable="false">—</string>
 
     <string name="students">Students</string>
@@ -15,26 +16,22 @@
     <string name="professor">Professor</string>
 
     <string name="subjects">Subjects</string>
-    <string name="expel">Отчислить</string>
+    <string name="expel">Expel</string>
     <string name="list_is_empty">List is empty</string>
     <string name="credits_placeholder">Credits: %1$d</string>
     <string name="enrolled_placeholder">Enrolled: %1$d</string>
 
-    <string-array name="array_cities">
-        <item>Moscow</item>
-        <item>Saint-Petersburg</item>
-        <item>Nizhny Novgorod</item>
-        <item>Perm</item>
-    </string-array>
+    <string name="location_moscow">Moscow</string>
+    <string name="location_saint_petersburg">Saint-Petersburg</string>
+    <string name="location_nizhny_novgorod">Nizhny Novgorod</string>
+    <string name="location_perm">Perm</string>
 
-    <string-array name="array_programs">
-        <item>SE</item>
-        <item>FM</item>
-        <item>AMI</item>
-        <item>LWR</item>
-        <item>EC</item>
-        <item>BI</item>
-    </string-array>
+    <string name="program_se">SE</string>
+    <string name="program_fm">FM</string>
+    <string name="program_ami">AMI</string>
+    <string name="program_lwr">LWR</string>
+    <string name="program_ec">EC</string>
+    <string name="program_bi">BI</string>
 
     <string name="english">English</string>
     <string name="discrete_mathematics">Discrete mathematics</string>

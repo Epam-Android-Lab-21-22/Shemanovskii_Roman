@@ -9,6 +9,7 @@ object Injector {
     lateinit var getTeachers: GetTeachers
     lateinit var getRandomTeacher: GetRandomTeacher
     lateinit var addTeacher: AddTeacher
+    lateinit var createTeacher: CreateTeacher
 
     lateinit var getSubjects: GetSubjects
     lateinit var getRandomSubject: GetRandomSubject
@@ -30,6 +31,7 @@ object Injector {
         getTeachers = GetTeachers(teacherRepository)
         getRandomTeacher = GetRandomTeacher(teacherRepository)
         addTeacher = AddTeacher(teacherRepository)
+        createTeacher = CreateTeacher(teacherRepository)
 
         val subjectRepository = SubjectRepository(subjectDataSource)
         getSubjects = GetSubjects(subjectRepository)

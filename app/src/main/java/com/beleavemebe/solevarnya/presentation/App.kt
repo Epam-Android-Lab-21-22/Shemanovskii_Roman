@@ -16,7 +16,7 @@ class App : Application() {
 
     private fun initDataSources() {
         InMemoryStudentDataSource.init(this)
-        InMemoryTeacherDataSource.init(this)
+        InMemoryTeacherDataSource.init()
         InMemorySubjectDataSource.init(this)
         InMemoryLessonDataSource.init(InMemorySubjectDataSource, InMemoryTeacherDataSource)
     }
