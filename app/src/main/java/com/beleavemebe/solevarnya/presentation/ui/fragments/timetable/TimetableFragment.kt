@@ -30,7 +30,7 @@ class TimetableFragment :
     }
 
     override fun setContent(content: List<Lesson>) {
-        val timetableAdapter = TimetableAdapter(content, ::loadMore)
+        val timetableAdapter = TimetableAdapter(content, presenter::onLoadMoreClicked)
         binding.rvTimetable.adapter = timetableAdapter
     }
 
@@ -39,10 +39,10 @@ class TimetableFragment :
         presenter.onDestroy()
     }
 
-    private fun loadMore() {
+    override fun showDisappointmentToast() {
         Toast.makeText(
             requireContext(),
-            "Removed until better times xD",
+            "Not implemented",
             Toast.LENGTH_SHORT
         ).show()
     }

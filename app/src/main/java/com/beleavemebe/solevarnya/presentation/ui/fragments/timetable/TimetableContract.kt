@@ -5,6 +5,11 @@ import com.beleavemebe.solevarnya.presentation.ui.fragments.BaseListView
 import com.beleavemebe.solevarnya.presentation.ui.fragments.BasePresenter
 
 interface TimetableContract {
-    interface Presenter : BasePresenter
-    interface View : BaseListView<Lesson>
+    interface Presenter : BasePresenter {
+        fun onLoadMoreClicked()
+    }
+
+    interface View : BaseListView<Lesson> {
+        fun showDisappointmentToast()
+    }
 }

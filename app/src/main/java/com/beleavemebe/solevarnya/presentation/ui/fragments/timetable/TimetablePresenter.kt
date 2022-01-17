@@ -10,6 +10,10 @@ class TimetablePresenter(
         view?.setContent(lessons)
     }
 
+    override fun onLoadMoreClicked() {
+        view?.showDisappointmentToast()
+    }
+
     override fun onDestroy() {
         view = null
     }
