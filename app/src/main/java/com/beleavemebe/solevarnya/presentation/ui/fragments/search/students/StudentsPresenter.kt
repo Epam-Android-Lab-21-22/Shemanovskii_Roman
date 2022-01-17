@@ -2,10 +2,12 @@ package com.beleavemebe.solevarnya.presentation.ui.fragments.search.students
 
 import com.beleavemebe.solevarnya.core.domain.Student
 import com.beleavemebe.solevarnya.presentation.di.Injector
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class StudentsPresenter(
     private var view: StudentsContract.View?,
-) : StudentsContract.Presenter {
+) : StudentsContract.Presenter() {
     override fun onRecyclerReady() {
         val students = Injector.getStudents()
         view?.setContent(students)
@@ -17,11 +19,15 @@ class StudentsPresenter(
     }
 
     override fun onRemoveStudent(student: Student) {
-        view?.expelStudent(student)
-        Injector.removeStudent(student)
+        presenterScope.launch {
+            delay(1000)
+            view?.expelStudent(student)
+            Injector.removeStudent(student)
+        }
     }
 
     override fun onDestroy() {
+        super.onDestroy()
         view = null
     }
 }
