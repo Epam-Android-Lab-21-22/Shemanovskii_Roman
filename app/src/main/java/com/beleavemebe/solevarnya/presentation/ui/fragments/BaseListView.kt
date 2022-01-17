@@ -1,7 +1,5 @@
 package com.beleavemebe.solevarnya.presentation.ui.fragments
 
-interface BaseView<T, P : BasePresenter> {
-    val presenter: P
-
+interface BaseListView<T> {
     fun setContent(content: List<T>)
 }

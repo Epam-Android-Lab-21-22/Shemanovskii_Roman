@@ -12,13 +12,15 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.databinding.FragmentRecyclerBinding
 import com.beleavemebe.solevarnya.presentation.ui.fragments.BasePresenter
-import com.beleavemebe.solevarnya.presentation.ui.fragments.BaseView
+import com.beleavemebe.solevarnya.presentation.ui.fragments.BaseListView
 import com.beleavemebe.solevarnya.presentation.util.illegalState
 import com.beleavemebe.solevarnya.presentation.util.swap
 
 abstract class BaseRecyclerFragmentWithPresenter<T, P : BasePresenter>
-    : Fragment(R.layout.fragment_recycler), BaseView<T, P>
+    : Fragment(R.layout.fragment_recycler), BaseListView<T>
 {
+    abstract val presenter: P
+
     protected val binding by viewBinding(FragmentRecyclerBinding::bind)
 
     private var items = mutableListOf<T>()
@@ -28,8 +30,6 @@ abstract class BaseRecyclerFragmentWithPresenter<T, P : BasePresenter>
             ?: illegalState("RecyclerFragment subclasses are expected to use ListAdapter")
 
     abstract fun initRecycler(rv: RecyclerView)
-
-    override fun setContent(content: List<T>) = setItems(content)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,6 +45,8 @@ abstract class BaseRecyclerFragmentWithPresenter<T, P : BasePresenter>
         adapter.submitList(list)
         binding.tvListIsEmpty.isVisible = list.isEmpty()
     }
+
+    override fun setContent(content: List<T>) = setItems(content)
 
     private fun setItems(content: List<T>) {
         items = content.toMutableList()
