@@ -6,11 +6,11 @@
 
     <fragment
         android:id="@+id/fragment_search"
-        android:name="com.beleavemebe.solevarnya.ui.fragments.search.SearchFragment"
+        android:name="com.beleavemebe.solevarnya.presentation.ui.fragments.search.SearchFragment"
         android:label="@string/find" />
 
     <fragment
         android:id="@+id/fragment_timetable"
-        android:name="com.beleavemebe.solevarnya.ui.fragments.timetable.TimetableFragment"
+        android:name="com.beleavemebe.solevarnya.presentation.ui.fragments.timetable.TimetableFragment"
         android:label="@string/timetable" />
 </navigation>

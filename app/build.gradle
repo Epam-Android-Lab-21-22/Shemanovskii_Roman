@@ -36,6 +36,8 @@ android {
 }
 
 dependencies {
+    implementation project(':core')
+
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.github.javafaker:javafaker:1.0.2'
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">HSE Recyclers</string>
+    <string name="app_name" translatable="false">MVP + Clean Arch HSE Recyclers</string>
     <string name="single_space_placeholder" translatable="false">%1$s %2$s</string>
     <string name="hour_minute_placeholder" translatable="false">%1$s:%2$s</string>
     <string name="long_dash" translatable="false">—</string>
