@@ -7,7 +7,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.plus
 
 abstract class CoroutinePresenter : BasePresenter {
-    protected val presenterScope = MainScope() + CoroutineName("")
+    protected val presenterScope = MainScope() + CoroutineName("PresenterScope")
 
     @CallSuper
     override fun onDestroy() {
