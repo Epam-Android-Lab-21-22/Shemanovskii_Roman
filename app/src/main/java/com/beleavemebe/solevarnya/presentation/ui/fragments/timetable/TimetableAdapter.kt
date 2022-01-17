@@ -18,6 +18,7 @@ import java.util.*
 
 class TimetableAdapter(
     private val timetable: List<Lesson>,
+    private val onLoadMoreClicked: () -> Unit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     sealed class TimetableEntry(val id: Int) {
         class LessonEntry(val lesson: Lesson) : TimetableEntry(VIEW_TYPE_LESSON)
@@ -34,14 +35,6 @@ class TimetableAdapter(
     private fun loadTimetable() {
         items.addAll(timetable.toDisplayableItems())
         notifyItemRangeInserted(0, itemCount)
-    }
-
-    private fun loadMore() {
-        val lastIndex = items.lastIndex
-        items.removeLast()
-        notifyItemRemoved(lastIndex)
-        items.addAll(timetable.toDisplayableItems())
-        notifyItemRangeInserted(lastIndex, items.lastIndex - lastIndex)
     }
 
     fun itemAt(i: Int): TimetableEntry? =
@@ -188,7 +181,7 @@ class TimetableAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind() {
             binding.btnLoadMore.setOnClickListener {
-                loadMore()
+                onLoadMoreClicked()
             }
         }
     }
