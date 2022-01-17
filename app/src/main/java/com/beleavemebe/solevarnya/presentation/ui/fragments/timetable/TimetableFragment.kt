@@ -20,9 +20,13 @@ class TimetableFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initRecycler()
+        presenter.onRecyclerReady()
+    }
+
+    private fun initRecycler() {
         binding.rvTimetable.layoutManager = LinearLayoutManager(requireContext())
         binding.rvTimetable.addItemDecoration(TimetableDecoration(ITEM_MARGIN))
-        presenter.onRecyclerReady()
     }
 
     override fun setContent(content: List<Lesson>) {
