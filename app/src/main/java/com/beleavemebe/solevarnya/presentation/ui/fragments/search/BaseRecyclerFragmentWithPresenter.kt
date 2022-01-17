@@ -71,8 +71,8 @@ abstract class BaseRecyclerFragmentWithPresenter<T, P : BasePresenter>
     protected fun itemAt(position: Int): T =
         items[position]
 
-    override fun onDestroyView() {
+    override fun onDestroy() {
         presenter.onDestroy()
-        super.onDestroyView()
+        super.onDestroy()
     }
 }
