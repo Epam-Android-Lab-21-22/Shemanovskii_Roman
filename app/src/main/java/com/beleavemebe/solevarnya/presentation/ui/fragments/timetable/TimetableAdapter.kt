@@ -32,16 +32,7 @@ class TimetableAdapter(
     }
 
     private fun loadTimetable() {
-        val today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
-
-        val filtered =
-            timetable.filter {
-                it.dayOfWeek.ordinal >= today + 1
-            }.takeIf {
-                it.isNotEmpty()
-            } ?: timetable
-
-        items.addAll(filtered.toDisplayableItems())
+        items.addAll(timetable.toDisplayableItems())
         notifyItemRangeInserted(0, itemCount)
     }
 
