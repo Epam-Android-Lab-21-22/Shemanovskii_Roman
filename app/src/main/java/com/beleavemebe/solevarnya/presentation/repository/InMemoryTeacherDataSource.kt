@@ -30,7 +30,7 @@ object InMemoryTeacherDataSource : TeacherDataSource {
         randomTeachers = generateSequence {
             createTeacher(faker)
         }
-            .take(7)
+            .take(3)
             .toMutableList()
     }
 

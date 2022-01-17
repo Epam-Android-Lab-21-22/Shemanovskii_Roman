@@ -20,9 +20,11 @@ class StudentsPresenter(
 
     override fun onRemoveStudent(student: Student) {
         presenterScope.launch {
+            view?.showLoading()
             delay(1000)
             view?.expelStudent(student)
             Injector.removeStudent(student)
+            view?.hideLoading()
         }
     }
 

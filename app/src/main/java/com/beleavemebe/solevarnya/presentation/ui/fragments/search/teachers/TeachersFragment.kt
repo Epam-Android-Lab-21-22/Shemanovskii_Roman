@@ -28,6 +28,10 @@ class TeachersFragment :
 
     override fun onTeacherAdded(at: Int) = binding.rvMain.smoothScrollToPosition(at + 1)
 
+    override fun showLoading() = showLoadingBar()
+
+    override fun hideLoading() = hideLoadingBar()
+
     companion object {
         private const val TEACHER_GRID_COLUMNS = 2
     }

@@ -64,4 +64,8 @@ class StudentsFragment :
     override fun expelStudent(student: Student) = removeItem(student)
 
     override fun swapStudents(from: Int, to: Int) = swapItems(from, to)
+
+    override fun showLoading() = showLoadingBar()
+
+    override fun hideLoading() = hideLoadingBar()
 }

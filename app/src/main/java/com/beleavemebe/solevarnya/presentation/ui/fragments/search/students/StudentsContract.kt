@@ -14,6 +14,8 @@ interface StudentsContract {
     interface View : BaseListView<Student> {
         fun swapStudents(from: Int, to: Int)
         fun expelStudent(student: Student)
+        fun showLoading()
+        fun hideLoading()
     }
 }
 

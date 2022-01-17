@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -74,5 +75,13 @@ abstract class BaseRecyclerFragmentWithPresenter<T, P : BasePresenter>
     override fun onDestroy() {
         presenter.onDestroy()
         super.onDestroy()
+    }
+
+    protected fun showLoadingBar() {
+        binding.linearProgress.isVisible = true
+    }
+
+    protected fun hideLoadingBar() {
+        binding.linearProgress.isVisible = false
     }
 }

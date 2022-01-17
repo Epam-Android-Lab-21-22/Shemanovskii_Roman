@@ -15,11 +15,13 @@ class TeachersPresenter(
 
     override fun onAddTeacherClicked(context: Context) {
         presenterScope.launch {
+            view?.showLoading()
             delay(2000)
             val newTeacher = Injector.createTeacher()
             val newItemIndex = Injector.addTeacher(newTeacher)
             view?.addTeacher(newTeacher)
             view?.onTeacherAdded(newItemIndex)
+            view?.hideLoading()
         }
     }
 

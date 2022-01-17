@@ -14,5 +14,7 @@ interface TeachersContract {
     interface View : BaseListView<Teacher> {
         fun addTeacher(teacher: Teacher)
         fun onTeacherAdded(at: Int)
+        fun showLoading()
+        fun hideLoading()
     }
 }

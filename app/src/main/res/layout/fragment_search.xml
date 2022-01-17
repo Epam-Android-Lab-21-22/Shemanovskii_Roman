@@ -7,15 +7,15 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="0dp"
-        android:clipToPadding="true"
         android:layout_height="44dp"
-        app:tabMode="scrollable"
-        app:tabIndicatorFullWidth="false"
-        app:tabTextAppearance="@style/TabTextAppearance"
+        android:clipToPadding="true"
         app:layout_constraintBottom_toTopOf="@id/view_pager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabIndicatorFullWidth="false"
+        app:tabMode="scrollable"
+        app:tabTextAppearance="@style/TabTextAppearance" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"

@@ -1,11 +1,9 @@
 package com.beleavemebe.solevarnya.presentation.repository
 
-import android.content.Context
 import com.beleavemebe.solevarnya.core.data.StudentDataSource
 import com.beleavemebe.solevarnya.core.domain.Student
 import com.beleavemebe.solevarnya.core.domain.enums.Degree
 import com.beleavemebe.solevarnya.core.domain.enums.Program
-import com.beleavemebe.solevarnya.presentation.model.ProgramResourceEnum
 import com.beleavemebe.solevarnya.presentation.util.getFaker
 import com.beleavemebe.solevarnya.presentation.util.swap
 
@@ -24,7 +22,7 @@ object InMemoryStudentDataSource : StudentDataSource {
         randomStudents.swap(i, j)
     }
 
-    fun init(context: Context) {
+    fun init() {
         val faker = getFaker()
 
         randomStudents = generateSequence {
@@ -35,8 +33,6 @@ object InMemoryStudentDataSource : StudentDataSource {
             val degree = Degree.values().random()
 
             val program = Program.values().random()
-            val programText =
-                context.resources.getString(ProgramResourceEnum.from(program).stringResId)
             val admissionYear = faker.number().numberBetween(17, 21)
             val groupNumber = faker.number().numberBetween(1, 6)
 
@@ -45,7 +41,7 @@ object InMemoryStudentDataSource : StudentDataSource {
 
             Student(name, surname, degree, admissionYear, program, groupNumber, quote, avatarUrl)
         }
-            .take(12)
+            .take(7)
             .toMutableList()
     }
 }
