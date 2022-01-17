@@ -32,7 +32,7 @@ class TimetableFragment :
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.onRecyclerReady()
+        presenter.onDestroy()
     }
 
     private fun loadMore() {
