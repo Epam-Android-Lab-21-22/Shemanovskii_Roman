@@ -26,7 +26,7 @@ class TeachersFragment :
 
     override fun addTeacher(teacher: Teacher) = addItem(teacher)
 
-    override fun onTeacherAdded(at: Int) = binding.rvMain.smoothScrollToPosition(at)
+    override fun onTeacherAdded(at: Int) = binding.rvMain.smoothScrollToPosition(at + 1)
 
     companion object {
         private const val TEACHER_GRID_COLUMNS = 2
