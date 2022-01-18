@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimaryVariant"
-    tools:context=".presentation.ui.fragments.timetable.TimetableFragment">
+    tools:context=".presentation.fragments.timetable.TimetableFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_timetable"

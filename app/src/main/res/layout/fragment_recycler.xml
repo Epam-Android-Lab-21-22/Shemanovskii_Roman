@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:indeterminate="true"
         android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/rv_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,0 +1,47 @@
+package com.beleavemebe.solevarnya.framework.repository
+
+import com.beleavemebe.solevarnya.core.data.StudentDataSource
+import com.beleavemebe.solevarnya.core.domain.Student
+import com.beleavemebe.solevarnya.core.domain.enums.Degree
+import com.beleavemebe.solevarnya.core.domain.enums.Program
+import com.beleavemebe.solevarnya.framework.util.getFaker
+import com.beleavemebe.solevarnya.framework.util.swap
+
+object InMemoryStudentDataSource : StudentDataSource {
+    private lateinit var randomStudents: MutableList<Student>
+
+    override fun fetchAll(): List<Student> {
+        return randomStudents
+    }
+
+    override fun remove(student: Student) {
+        randomStudents.remove(student)
+    }
+
+    override fun swap(i: Int, j: Int) {
+        randomStudents.swap(i, j)
+    }
+
+    fun init() {
+        val faker = getFaker()
+
+        randomStudents = generateSequence {
+            val nameSurname = faker.name()
+
+            val name = nameSurname.firstName()
+            val surname = nameSurname.lastName()
+            val degree = Degree.values().random()
+
+            val program = Program.values().random()
+            val admissionYear = faker.number().numberBetween(17, 21)
+            val groupNumber = faker.number().numberBetween(1, 6)
+
+            val quote = faker.twinPeaks().quote()
+            val avatarUrl = PepeAvatars.getRandomAvatarUrl()
+
+            Student(name, surname, degree, admissionYear, program, groupNumber, quote, avatarUrl)
+        }
+            .take(11)
+            .toMutableList()
+    }
+}
