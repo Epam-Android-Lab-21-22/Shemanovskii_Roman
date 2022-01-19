@@ -17,9 +17,7 @@ class TeachersFragment :
 
     override fun initRecycler(rv: RecyclerView) {
         with(rv) {
-            adapter = TeacherAdapter {
-                presenter.onAddTeacherClicked()
-            }
+            adapter = TeacherAdapter(presenter::onAddTeacherClicked)
             layoutManager = StaggeredGridLayoutManager(
                 TEACHER_GRID_COLUMNS, StaggeredGridLayoutManager.VERTICAL)
             addItemDecoration(GridMarginDecoration(ITEM_MARGIN))
