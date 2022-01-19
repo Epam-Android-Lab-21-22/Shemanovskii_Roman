@@ -34,7 +34,7 @@ object InMemoryTeacherDataSource : TeacherDataSource {
             .toMutableList()
     }
 
-    fun createTeacher(faker: Faker): Teacher {
+    private fun createTeacher(faker: Faker): Teacher {
         val nameSurname = faker.name()
 
         val name = nameSurname.firstName()

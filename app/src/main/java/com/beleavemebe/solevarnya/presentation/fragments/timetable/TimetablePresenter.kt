@@ -1,12 +1,13 @@
 package com.beleavemebe.solevarnya.presentation.fragments.timetable
 
-import com.beleavemebe.solevarnya.framework.di.Injector
+import com.beleavemebe.solevarnya.core.usecase.GetLessons
 
 class TimetablePresenter(
     private var view: TimetableContract.View?,
+    private val getLessons: GetLessons,
 ) : TimetableContract.Presenter {
     override fun onRecyclerReady() {
-        val lessons = Injector.getLessons()
+        val lessons = getLessons()
         view?.setContent(lessons)
     }
 

@@ -9,6 +9,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.core.domain.Lesson
 import com.beleavemebe.solevarnya.databinding.FragmentTimetableBinding
+import com.beleavemebe.solevarnya.framework.di.Injector
 import com.beleavemebe.solevarnya.presentation.fragments.Constants.ITEM_MARGIN
 
 class TimetableFragment :
@@ -16,7 +17,8 @@ class TimetableFragment :
     TimetableContract.View
 {
     private val binding by viewBinding(FragmentTimetableBinding::bind)
-    private val presenter = TimetablePresenter(this)
+    private val presenter: TimetableContract.Presenter =
+        TimetablePresenter(this, Injector.getLessons)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

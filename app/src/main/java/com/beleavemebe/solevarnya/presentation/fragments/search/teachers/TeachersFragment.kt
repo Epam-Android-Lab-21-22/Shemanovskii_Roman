@@ -3,6 +3,7 @@ package com.beleavemebe.solevarnya.presentation.fragments.search.teachers
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.beleavemebe.solevarnya.core.domain.Teacher
+import com.beleavemebe.solevarnya.framework.di.Injector
 import com.beleavemebe.solevarnya.presentation.fragments.Constants.ITEM_MARGIN
 import com.beleavemebe.solevarnya.presentation.fragments.search.BaseRecyclerFragmentWithPresenter
 import com.beleavemebe.solevarnya.presentation.fragments.search.decoration.GridMarginDecoration
@@ -11,12 +12,13 @@ class TeachersFragment :
     BaseRecyclerFragmentWithPresenter<Teacher, TeachersContract.Presenter>(),
     TeachersContract.View
 {
-    override val presenter: TeachersContract.Presenter = TeachersPresenter(this)
+    override val presenter: TeachersContract.Presenter =
+        TeachersPresenter(this, Injector.getTeachers, Injector.createTeacher, Injector.addTeacher)
 
     override fun initRecycler(rv: RecyclerView) {
         with(rv) {
             adapter = TeacherAdapter {
-                presenter.onAddTeacherClicked(requireContext())
+                presenter.onAddTeacherClicked()
             }
             layoutManager = StaggeredGridLayoutManager(
                 TEACHER_GRID_COLUMNS, StaggeredGridLayoutManager.VERTICAL)

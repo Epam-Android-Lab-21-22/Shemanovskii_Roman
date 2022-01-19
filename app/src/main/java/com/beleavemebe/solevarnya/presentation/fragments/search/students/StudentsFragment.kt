@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.core.domain.Student
+import com.beleavemebe.solevarnya.framework.di.Injector
 import com.beleavemebe.solevarnya.presentation.fragments.Constants.ITEM_MARGIN
 import com.beleavemebe.solevarnya.presentation.fragments.search.BaseRecyclerFragmentWithPresenter
 import com.beleavemebe.solevarnya.presentation.fragments.search.decoration.LinearMarginDecoration
@@ -15,7 +16,8 @@ class StudentsFragment :
     BaseRecyclerFragmentWithPresenter<Student, StudentsContract.Presenter>(),
     StudentsContract.View
 {
-    override val presenter = StudentsPresenter(this)
+    override val presenter: StudentsContract.Presenter =
+        StudentsPresenter(this, Injector.getStudents, Injector.swapStudents, Injector.removeStudent)
 
     private val touchCallback = object : ItemTouchHelper.SimpleCallback(
         ItemTouchHelper.UP or ItemTouchHelper.DOWN, 0

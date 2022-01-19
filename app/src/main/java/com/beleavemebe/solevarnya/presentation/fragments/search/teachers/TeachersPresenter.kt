@@ -1,24 +1,28 @@
 package com.beleavemebe.solevarnya.presentation.fragments.search.teachers
 
-import android.content.Context
-import com.beleavemebe.solevarnya.framework.di.Injector
+import com.beleavemebe.solevarnya.core.usecase.AddTeacher
+import com.beleavemebe.solevarnya.core.usecase.CreateTeacher
+import com.beleavemebe.solevarnya.core.usecase.GetTeachers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class TeachersPresenter(
     private var view: TeachersContract.View?,
+    private val getTeachers: GetTeachers,
+    private val createTeacher: CreateTeacher,
+    private val addTeacher: AddTeacher,
 ) : TeachersContract.Presenter() {
     override fun onRecyclerReady() {
-        val teachers = Injector.getTeachers()
+        val teachers = getTeachers()
         view?.setContent(teachers)
     }
 
-    override fun onAddTeacherClicked(context: Context) {
+    override fun onAddTeacherClicked() {
         presenterScope.launch {
             view?.showLoading()
             delay(2000)
-            val newTeacher = Injector.createTeacher()
-            val newItemIndex = Injector.addTeacher(newTeacher)
+            val newTeacher = createTeacher()
+            val newItemIndex = addTeacher(newTeacher)
             view?.addTeacher(newTeacher)
             view?.onTeacherAdded(newItemIndex)
             view?.hideLoading()

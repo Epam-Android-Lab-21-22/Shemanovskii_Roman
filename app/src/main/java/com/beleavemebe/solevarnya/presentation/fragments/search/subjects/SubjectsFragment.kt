@@ -3,6 +3,7 @@ package com.beleavemebe.solevarnya.presentation.fragments.search.subjects
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.beleavemebe.solevarnya.core.domain.Subject
+import com.beleavemebe.solevarnya.framework.di.Injector
 import com.beleavemebe.solevarnya.presentation.fragments.Constants.ITEM_MARGIN
 import com.beleavemebe.solevarnya.presentation.fragments.search.BaseRecyclerFragmentWithPresenter
 import com.beleavemebe.solevarnya.presentation.fragments.search.decoration.GridMarginDecoration
@@ -11,7 +12,8 @@ class SubjectsFragment :
     BaseRecyclerFragmentWithPresenter<Subject, SubjectsContract.Presenter>(),
     SubjectsContract.View
 {
-    override val presenter: SubjectsContract.Presenter = SubjectsPresenter(this)
+    override val presenter: SubjectsContract.Presenter =
+        SubjectsPresenter(this, Injector.getSubjects)
 
     override fun initRecycler(rv: RecyclerView) {
         with(rv) {
