@@ -14,9 +14,11 @@ import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.databinding.FragmentSongBinding
 import com.beleavemebe.solevarnya.domain.model.SongDetails
 
+private typealias Binding = FragmentSongBinding
+
 class SongFragment : Fragment(R.layout.fragment_song) {
     private val viewModel: ISongViewModel by viewModels<SongViewModel>()
-    private val binding by viewBinding(FragmentSongBinding::bind)
+    private val binding by viewBinding(Binding::bind)
     private val args by navArgs<SongFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,13 +28,13 @@ class SongFragment : Fragment(R.layout.fragment_song) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbar()
+        binding.initToolbar()
         subscribeToViewModel()
     }
 
-    private fun initToolbar() {
-        binding.collapsingToolbarLayout.setupWithNavController(binding.toolbar, findNavController())
-        binding.toolbar.setNavigationIconTint(Color.WHITE)
+    private fun Binding.initToolbar() {
+        collapsingToolbarLayout.setupWithNavController(toolbar, findNavController())
+        toolbar.setNavigationIconTint(Color.WHITE)
     }
 
     private fun subscribeToViewModel() {
@@ -40,23 +42,22 @@ class SongFragment : Fragment(R.layout.fragment_song) {
     }
 
     private fun renderSongDetails(songDetails: SongDetails) {
-        renderCover(songDetails.coverUrl)
-        renderSongInfo(songDetails)
-
+        binding.renderCover(songDetails.coverUrl)
+        binding.renderSongInfo(songDetails)
     }
 
-    private fun renderSongInfo(songDetails: SongDetails) {
-        binding.tvLyrics.text = songDetails.lyrics
-        binding.tvYearValue.text = songDetails.year
-        binding.tvAlbumValue.text = songDetails.album
-        binding.tvGenreValue.text = songDetails.genre
+    private fun Binding.renderSongInfo(songDetails: SongDetails) {
+        tvLyrics.text = songDetails.lyrics
+        tvYearValue.text = songDetails.year
+        tvAlbumValue.text = songDetails.album
+        tvGenreValue.text = songDetails.genre
     }
 
-    private fun renderCover(coverUrl: String?) {
+    private fun Binding.renderCover(coverUrl: String?) {
         if (coverUrl != null) {
-            binding.ivCover.load(coverUrl)
+            ivCover.load(coverUrl)
         } else {
-            binding.ivCover.load(R.drawable.placeholder_vinyl)
+            ivCover.load(R.drawable.placeholder_vinyl)
         }
     }
 }

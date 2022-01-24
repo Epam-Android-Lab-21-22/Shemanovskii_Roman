@@ -14,26 +14,28 @@ import com.beleavemebe.solevarnya.databinding.FragmentSearchBinding
 import com.beleavemebe.solevarnya.domain.model.SongPreview
 import com.beleavemebe.solevarnya.view.util.doOnQueryChanged
 
+private typealias Binding = FragmentSearchBinding
+
 class SearchFragment : Fragment(R.layout.fragment_search) {
     private val viewModel: ISearchViewModel by viewModels<SearchViewModel>()
-    private val binding by viewBinding(FragmentSearchBinding::bind)
+    private val binding by viewBinding(Binding::bind)
     private val adapter = SearchAdapter(::navigateToSongDetails)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbar()
-        initRecyclerView()
+        binding.initToolbar()
+        binding.initRecyclerView()
         subscribeToViewModel()
     }
 
-    private fun initToolbar() {
-        binding.toolbar.setupWithNavController(findNavController())
-        binding.toolbar.inflateMenu(R.menu.fragment_search)
-        initSearchAction(binding.toolbar.menu)
+    private fun Binding.initToolbar() {
+        toolbar.setupWithNavController(findNavController())
+        toolbar.inflateMenu(R.menu.fragment_search)
+        initSearchAction(toolbar.menu)
     }
 
-    private fun initRecyclerView() {
-        binding.rvSongs.adapter = adapter
+    private fun Binding.initRecyclerView() {
+        rvSongs.adapter = adapter
     }
 
     private fun subscribeToViewModel() {

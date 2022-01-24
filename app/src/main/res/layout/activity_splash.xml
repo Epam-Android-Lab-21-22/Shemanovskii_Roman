@@ -10,11 +10,11 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/firstLayout"
         android:layout_width="0dp"
-        android:layout_height="260dp"
+        android:layout_height="0dp"
         app:cardBackgroundColor="@color/primary"
         app:cardCornerRadius="0dp"
         app:cardElevation="20dp"
-        app:layout_constraintBottom_toTopOf="@id/secondLayout"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -52,6 +52,14 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/secondLayout"
         android:layout_width="0dp"
@@ -59,13 +67,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/firstLayout">
+        app:layout_constraintTop_toBottomOf="@id/guideline">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvAppTitle"
             style="@style/TextAppearance.MaterialComponents.Headline4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="@string/homework_vii"
             android:textStyle="italic"
             app:fontFamily="serif"

@@ -1,5 +1,6 @@
 package com.beleavemebe.solevarnya.view.search
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,7 @@ class SearchAdapter(
 ) : RecyclerView.Adapter<SearchAdapter.SongViewHolder>() {
     private val items = mutableListOf<SongPreview>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setContent(content: List<SongPreview>) {
         items.clear()
         items += content

@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="256dp"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
@@ -72,16 +72,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    tools:maxLength="800"
+                    tools:text="@tools:sample/lorem/random" />
             </FrameLayout>
-
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                app:cardCornerRadius="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:cardElevation="16dp"
-                android:layout_height="wrap_content">
+                app:cardCornerRadius="0dp"
+                app:cardElevation="16dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -90,23 +91,23 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/tvYear"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="4dp"
+                        android:text="@string/year"
                         android:textAllCaps="true"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:paddingVertical="4dp"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/year"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/tvYearValue"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/tvYearValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
                         android:textColor="@color/secondaryVariant"
+                        android:textSize="16sp"
                         app:layout_constraintBaseline_toBaselineOf="@+id/tvYear"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tvYear"
@@ -121,23 +122,23 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/tvAlbum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="4dp"
+                        android:text="@string/album"
                         android:textAllCaps="true"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:paddingVertical="4dp"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/album"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/tvAlbumValue"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/yearBarrier" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/tvAlbumValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
                         android:textColor="@color/secondaryVariant"
+                        android:textSize="16sp"
                         app:layout_constraintBaseline_toBaselineOf="@+id/tvAlbum"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tvAlbum"
@@ -152,23 +153,23 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/tvGenre"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="4dp"
+                        android:text="@string/genre"
                         android:textAllCaps="true"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:paddingVertical="4dp"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/genre"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/tvGenreValue"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/albumBarrier" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/tvGenreValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
                         android:textColor="@color/secondaryVariant"
+                        android:textSize="16sp"
                         app:layout_constraintBaseline_toBaselineOf="@+id/tvGenre"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tvGenre"

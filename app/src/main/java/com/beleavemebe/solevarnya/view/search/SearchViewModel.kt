@@ -1,5 +1,6 @@
 package com.beleavemebe.solevarnya.view.search
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.beleavemebe.solevarnya.data.SongDetailsHardcodedRepository
@@ -15,7 +16,7 @@ class SearchViewModel : ViewModel(), ISearchViewModel {
         SearchSongPreviews(SongPreviewRepository(SearchSongs(SongDetailsHardcodedRepository))) // lol xddd
 
     private var mutableQuery = MutableStateFlow("")
-    private var mutableShouldShowLoading = MutableStateFlow(false)
+    private var mutableShouldShowLoading = MutableLiveData(false)
 
     override val songs =
         mutableQuery
@@ -24,7 +25,6 @@ class SearchViewModel : ViewModel(), ISearchViewModel {
 
     override val shouldShowLoading =
         mutableShouldShowLoading
-            .asLiveData()
 
     override fun onQueryTextChanged(query: String) {
         mutableQuery.value = query
