@@ -24,6 +24,7 @@ object SongDetailsHardcodedRepository : SongDetailsRepository {
 
     suspend fun init(assetManager: AssetManager) =
         withContext(Dispatchers.IO) {
+            if (::allSongs.isInitialized) return@withContext
             allSongs = deserializeSongs(assetManager).shuffled()
         }
 
