@@ -1,13 +1,12 @@
 package com.beleavemebe.solevarnya.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.beleavemebe.solevarnya.R
-import com.beleavemebe.solevarnya.data.SongDetailsRepositoryImpl
 import com.beleavemebe.solevarnya.databinding.ActivitySplashBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
