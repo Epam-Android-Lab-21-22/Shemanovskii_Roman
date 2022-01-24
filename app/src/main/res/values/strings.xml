@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">solevarnya</string>
+    <string name="search_songs">Search songs</string>
+    <string name="initializing">Initializing…</string>
+    <string name="please_wait">Please wait…</string>
+    <string name="solevarnya_inc">Solevarnya Inc.</string>
+    <string name="year">Year</string>
+    <string name="album">Album</string>
+    <string name="genre">Genre</string>
+    <string name="no_rights_reserved">No rights reserved.</string>
+    <string name="homework_vii">Homework VII</string>
 </resources>
