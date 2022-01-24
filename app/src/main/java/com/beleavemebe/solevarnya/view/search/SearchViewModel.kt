@@ -32,5 +32,4 @@ class SearchViewModel(
         mutableShouldShowLoading.value = false
         return result
     }
-
 }

@@ -12,11 +12,4 @@ class SongDetailsRepositoryImpl @Inject constructor(
     override suspend fun getSongDetails(id: String): SongDetails {
         return songDataSource.getSongs().first { it.id == id }
     }
-
-    override suspend fun searchSongs(query: String): List<SongDetails> {
-        return if (query.isBlank())
-            songDataSource.getSongs()
-        else
-            songDataSource.getSongs().filter { it.mentions(query) }
-    }
 }
