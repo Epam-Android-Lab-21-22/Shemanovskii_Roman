@@ -2,18 +2,21 @@ package com.beleavemebe.solevarnya.data
 
 import android.content.res.AssetManager
 import com.beleavemebe.solevarnya.domain.model.SongDetails
+import com.beleavemebe.solevarnya.domain.repository.SongDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class SongDataSource @Inject constructor(
+@Singleton
+class SongDataSourceImpl @Inject constructor(
     private val assetManager: AssetManager,
-) {
+) : SongDataSource {
     private var songs: List<SongDetails>? = null
 
-    suspend fun getSongs(): List<SongDetails> =
+    override suspend fun getSongs(): List<SongDetails> =
         songs ?: initSongs()
 
     private suspend fun initSongs(): List<SongDetails> {

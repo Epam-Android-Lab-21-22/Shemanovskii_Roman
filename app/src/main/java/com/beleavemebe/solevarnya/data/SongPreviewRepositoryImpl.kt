@@ -2,6 +2,7 @@ package com.beleavemebe.solevarnya.data
 
 import com.beleavemebe.solevarnya.domain.model.SongDetails
 import com.beleavemebe.solevarnya.domain.model.SongPreview
+import com.beleavemebe.solevarnya.domain.repository.SongDataSource
 import com.beleavemebe.solevarnya.domain.repository.SongPreviewRepository
 import javax.inject.Inject
 
