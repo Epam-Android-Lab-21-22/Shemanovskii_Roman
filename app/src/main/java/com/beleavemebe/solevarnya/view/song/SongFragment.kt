@@ -1,5 +1,6 @@
 package com.beleavemebe.solevarnya.view.song
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -13,17 +14,23 @@ import coil.load
 import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.databinding.FragmentSongBinding
 import com.beleavemebe.solevarnya.domain.model.SongDetails
+import com.beleavemebe.solevarnya.view.appComponent
+import javax.inject.Inject
 
 private typealias Binding = FragmentSongBinding
 
 class SongFragment : Fragment(R.layout.fragment_song) {
-    private val viewModel: ISongViewModel by viewModels<SongViewModel>()
     private val binding by viewBinding(Binding::bind)
     private val args by navArgs<SongFragmentArgs>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.submitSongId(args.songId)
+    @Inject lateinit var vmFactory: SongViewModelFactory.Factory
+    private val viewModel: ISongViewModel by viewModels {
+        vmFactory.create(args.songId)
+    }
+
+    override fun onAttach(context: Context) {
+        context.appComponent.inject(this)
+        super.onAttach(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

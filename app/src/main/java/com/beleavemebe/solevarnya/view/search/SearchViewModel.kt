@@ -3,18 +3,14 @@ package com.beleavemebe.solevarnya.view.search
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.beleavemebe.solevarnya.data.SongDetailsHardcodedRepository
 import com.beleavemebe.solevarnya.domain.model.SongPreview
-import com.beleavemebe.solevarnya.domain.repository.SongPreviewRepository
 import com.beleavemebe.solevarnya.domain.usecase.SearchSongPreviews
-import com.beleavemebe.solevarnya.domain.usecase.SearchSongs
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.mapLatest
 
-class SearchViewModel : ViewModel(), ISearchViewModel {
-    private val searchSongPreviews =
-        SearchSongPreviews(SongPreviewRepository(SearchSongs(SongDetailsHardcodedRepository))) // lol xddd
-
+class SearchViewModel(
+    private val searchSongPreviews: SearchSongPreviews,
+) : ViewModel(), ISearchViewModel {
     private var mutableQuery = MutableStateFlow("")
     private var mutableShouldShowLoading = MutableLiveData(false)
 
@@ -36,4 +32,5 @@ class SearchViewModel : ViewModel(), ISearchViewModel {
         mutableShouldShowLoading.value = false
         return result
     }
+
 }

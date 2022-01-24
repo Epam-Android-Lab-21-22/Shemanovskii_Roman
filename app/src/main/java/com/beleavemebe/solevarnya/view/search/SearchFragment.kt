@@ -1,5 +1,6 @@
 package com.beleavemebe.solevarnya.view.search
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
@@ -12,14 +13,24 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.databinding.FragmentSearchBinding
 import com.beleavemebe.solevarnya.domain.model.SongPreview
+import com.beleavemebe.solevarnya.view.appComponent
 import com.beleavemebe.solevarnya.view.util.doOnQueryChanged
+import javax.inject.Inject
 
 private typealias Binding = FragmentSearchBinding
 
 class SearchFragment : Fragment(R.layout.fragment_search) {
-    private val viewModel: ISearchViewModel by viewModels<SearchViewModel>()
     private val binding by viewBinding(Binding::bind)
     private val adapter = SearchAdapter(::navigateToSongDetails)
+    @Inject lateinit var vmFactory: SearchViewModelFactory
+    private val viewModel: ISearchViewModel by viewModels<SearchViewModel> {
+        vmFactory
+    }
+
+    override fun onAttach(context: Context) {
+        context.appComponent.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

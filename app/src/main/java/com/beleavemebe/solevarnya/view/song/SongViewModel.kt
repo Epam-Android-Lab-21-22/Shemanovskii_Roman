@@ -1,35 +1,20 @@
 package com.beleavemebe.solevarnya.view.song
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import com.beleavemebe.solevarnya.data.SongDetailsHardcodedRepository
+import androidx.lifecycle.*
 import com.beleavemebe.solevarnya.domain.model.SongDetails
 import com.beleavemebe.solevarnya.domain.usecase.GetSongDetails
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.shareIn
 
-class SongViewModel : ViewModel(), ISongViewModel {
-    private val getSongDetails = GetSongDetails(SongDetailsHardcodedRepository)
-
-    private val mutableSongId = MutableStateFlow<String?>(null)
-    private val mutableShouldShowLoading = MutableLiveData(true)
-
+class SongViewModel(
+    private val songId: String,
+    private val getSongDetails: GetSongDetails,
+) : ViewModel(), ISongViewModel {
     override val songDetails: LiveData<SongDetails> =
-        mutableSongId.mapNotNull { songId ->
-            songId?.let { id ->
-                val result = getSongDetails(id)
-                mutableShouldShowLoading.value = false
-                result
-            }
-        }.asLiveData()
-
-
-    override val shouldShowLoading: LiveData<Boolean> =
-        mutableShouldShowLoading
-
-    override fun submitSongId(id: String) {
-        mutableSongId.value = id
-    }
+        flow {
+            emit(getSongDetails(songId))
+        }
+            .shareIn(viewModelScope, SharingStarted.Lazily, replay = 1)
+            .asLiveData()
 }
