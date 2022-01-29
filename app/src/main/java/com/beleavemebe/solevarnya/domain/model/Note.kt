@@ -7,5 +7,5 @@ import java.util.*
 @Serializable
 data class Note(
     val text: String,
-    @Serializable(DateSerializer::class) val date: Date,
+    @Serializable(DateSerializer::class) val date: Date
 )
