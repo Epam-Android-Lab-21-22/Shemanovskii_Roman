@@ -13,6 +13,7 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
 
+// TODO: 1/30/22 caching
 abstract class JsonFileNoteRepository : NoteRepository {
     abstract val jsonFile: File?
 

@@ -2,6 +2,7 @@ package com.beleavemebe.solevarnya.data
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import androidx.core.content.edit
 import com.beleavemebe.solevarnya.domain.model.Note
 import com.beleavemebe.solevarnya.domain.repository.NoteRepository
 import kotlinx.coroutines.Dispatchers
@@ -35,9 +36,9 @@ class SharedPreferencesNoteRepository(context: Context) : NoteRepository {
     private suspend fun serialize(notes: List<Note>) {
         withContext(Dispatchers.IO) {
             val noteJsonSet = notes.map(Json.Default::encodeToString).toSet()
-            prefs.edit()
-                .putStringSet(PREF_KEY_NOTES, noteJsonSet)
-                .commit()
+            prefs.edit(true) {
+                putStringSet(PREF_KEY_NOTES, noteJsonSet)
+            }
         }
     }
 }

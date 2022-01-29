@@ -3,7 +3,7 @@ package com.beleavemebe.solevarnya.data
 import android.content.Context
 import java.io.File
 
-private const val FILE_NAME_NOTES = "files_external.json"
+private const val FILE_NAME_NOTES = "notes_external.json"
 
 class ExternalStorageNoteRepository(context: Context) : JsonFileNoteRepository() {
 
