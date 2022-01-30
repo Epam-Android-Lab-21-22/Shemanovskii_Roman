@@ -15,7 +15,6 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
 
-// TODO: 1/30/22 caching
 abstract class JsonFileNoteRepository : NoteRepository {
     abstract val jsonFile: File?
 
@@ -25,11 +24,15 @@ abstract class JsonFileNoteRepository : NoteRepository {
     private val outputStream: FileOutputStream
         get() = jsonFile?.outputStream() ?: throw IOException("Could not write to output stream")
 
-    override suspend fun fetchAll(): List<Note> =
-        deserialize()
+    private var cachedNotes: List<Note>? = null
+
+    override suspend fun fetchAll(): List<Note> {
+        return cachedNotes ?: deserialize()
+    }
 
     override suspend fun add(note: Note) {
         val notes = fetchAll() + note
+        cachedNotes = notes
         serialize(notes)
     }
 
@@ -43,7 +46,9 @@ abstract class JsonFileNoteRepository : NoteRepository {
     private suspend fun deserialize(): List<Note> =
         withContext(Dispatchers.IO) {
             try {
-                Json.decodeFromStream(inputStream)
+                val deserialized = Json.decodeFromStream<List<Note>>(inputStream)
+                cachedNotes = deserialized
+                deserialized
             } catch (e: SerializationException) {
                 emptyList()
             }
