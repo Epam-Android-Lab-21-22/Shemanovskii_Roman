@@ -27,10 +27,14 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ListUpdateCallba
     override fun onCreate(savedInstanceState: Bundle?) {
         ServiceLocator.init(application)
         super.onCreate(savedInstanceState)
-        initDropdownOptions()
         initListeners()
         initRecyclerView()
         viewModel.state.observe(this, ::renderUi)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initDropdownOptions() // can't do it in onCreate (https://github.com/material-components/material-components-android/issues/2012)
     }
 
     private fun initListeners() {
