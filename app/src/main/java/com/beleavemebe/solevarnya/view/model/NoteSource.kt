@@ -1,4 +1,4 @@
-package com.beleavemebe.solevarnya.view
+package com.beleavemebe.solevarnya.view.model
 
 import androidx.annotation.StringRes
 import com.beleavemebe.solevarnya.R
@@ -10,7 +10,7 @@ sealed class NoteSource(@StringRes val titleResId: Int) {
     object RoomDatabase : NoteSource(R.string.room_database)
 }
 
-val DATA_SOURCES = arrayOf(
+val NOTE_SOURCES = arrayOf(
     NoteSource.SharedPrefs,
     NoteSource.InternalStorage,
     NoteSource.ExternalStorage,

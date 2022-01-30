@@ -7,11 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.beleavemebe.solevarnya.di.ServiceLocator
 import com.beleavemebe.solevarnya.domain.model.Note
 import com.beleavemebe.solevarnya.domain.repository.NoteRepository
+import com.beleavemebe.solevarnya.view.model.Event
+import com.beleavemebe.solevarnya.view.model.NoteLoadingException
+import com.beleavemebe.solevarnya.view.model.NoteSource
+import com.beleavemebe.solevarnya.view.model.State
 import com.github.javafaker.Faker
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.serialization.SerializationException
 import java.io.IOException
 import java.util.*
 
@@ -26,8 +28,8 @@ class MainViewModel : ViewModel(), IMainViewModel {
 
     override val state = mutableState
 
-    override fun onDataSourceChanged(dataSource: NoteSource) {
-        handleEvent(Event.SelectDataSource(dataSource))
+    override fun onDataSourceChanged(noteSource: NoteSource) {
+        handleEvent(Event.SelectDataSource(noteSource))
     }
 
     override fun onAddNewNote() {
@@ -62,25 +64,25 @@ class MainViewModel : ViewModel(), IMainViewModel {
 
     private fun handleEvent(event: Event) {
         when (event) {
-            is Event.SelectDataSource -> switchNoteDataSource(event.dataSource)
+            is Event.SelectDataSource -> switchNoteDataSource(event.noteSource)
             is Event.AddNewNote -> addNote(event.note)
         }
     }
 
-    private fun switchNoteDataSource(dataSource: NoteSource) {
-        refreshRepositoryInstance(dataSource)
+    private fun switchNoteDataSource(noteSource: NoteSource) {
+        refreshRepositoryInstance(noteSource)
         loadNotes(shouldShowLoading = true)
     }
 
     private fun addNote(note: Note) {
-        viewModelScope.launch {
+        viewModelScope.launch(exceptionHandler) {
             noteRepository?.add(note)
             loadNotes(shouldShowLoading = false)
         }
     }
 
-    private fun refreshRepositoryInstance(dataSource: NoteSource) {
-        noteRepository = when (dataSource) {
+    private fun refreshRepositoryInstance(noteSource: NoteSource) {
+        noteRepository = when (noteSource) {
             NoteSource.SharedPrefs -> ServiceLocator.sharedPreferencesNoteRepository
             NoteSource.InternalStorage -> ServiceLocator.internalStorageNoteRepository
             NoteSource.ExternalStorage -> ServiceLocator.externalStorageNoteRepository

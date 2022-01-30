@@ -12,6 +12,9 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.beleavemebe.solevarnya.R
 import com.beleavemebe.solevarnya.databinding.ActivityMainBinding
 import com.beleavemebe.solevarnya.di.ServiceLocator
+import com.beleavemebe.solevarnya.view.model.NOTE_SOURCES
+import com.beleavemebe.solevarnya.view.model.NoteLoadingException
+import com.beleavemebe.solevarnya.view.model.State
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), ListUpdateCallback {
     private val binding by viewBinding(ActivityMainBinding::bind)
@@ -79,7 +82,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ListUpdateCallba
     }
 
     private fun initDropdownOptions() {
-        val optionsArray = DATA_SOURCES
+        val optionsArray = NOTE_SOURCES
         val stringArray = optionsArray.map { getString(it.titleResId) }
         val adapter = ArrayAdapter(this, R.layout.dropdown_menu_item, stringArray)
         (binding.tiNoteSource.editText as? AutoCompleteTextView)
