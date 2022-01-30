@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ListUpdateCallba
                 binding.progressCircle.isVisible = false
                 binding.recyclerView.isVisible = false
                 binding.tvCenter.isVisible = true
+                binding.btnNewNote.isEnabled = false
                 binding.tvCenter.text = when (state.exception) {
                     is NoteLoadingException.DataSourceUnavailable ->
                         getString(R.string.source_unavailable)
