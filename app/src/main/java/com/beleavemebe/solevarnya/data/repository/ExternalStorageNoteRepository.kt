@@ -1,4 +1,4 @@
-package com.beleavemebe.solevarnya.data
+package com.beleavemebe.solevarnya.data.repository
 
 import android.content.Context
 import android.os.Environment
@@ -9,9 +9,7 @@ import java.io.IOException
 private const val FILE_NAME_NOTES = "notes_external.json"
 
 class ExternalStorageNoteRepository(context: Context) : JsonFileNoteRepository() {
-
     private val externalDir = context.getExternalFilesDir(null)
-
     override val jsonFile = externalDir?.run { File("$path/$FILE_NAME_NOTES") }
 
     override suspend fun add(note: Note) {

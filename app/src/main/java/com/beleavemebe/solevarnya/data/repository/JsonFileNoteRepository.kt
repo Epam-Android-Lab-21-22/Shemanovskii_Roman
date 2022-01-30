@@ -1,4 +1,6 @@
-package com.beleavemebe.solevarnya.data
+@file:Suppress("BlockingMethodInNonBlockingContext")
+
+package com.beleavemebe.solevarnya.data.repository
 
 import com.beleavemebe.solevarnya.domain.model.Note
 import com.beleavemebe.solevarnya.domain.repository.NoteRepository
@@ -31,7 +33,6 @@ abstract class JsonFileNoteRepository : NoteRepository {
         serialize(notes)
     }
 
-    @Suppress("BlockingMethodInNonBlockingContext")
     private suspend fun serialize(notes: List<Note>) =
         withContext(Dispatchers.IO) {
             val notesJson = Json.encodeToString(notes)

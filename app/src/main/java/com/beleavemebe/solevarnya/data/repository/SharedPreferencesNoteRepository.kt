@@ -1,4 +1,4 @@
-package com.beleavemebe.solevarnya.data
+package com.beleavemebe.solevarnya.data.repository
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
