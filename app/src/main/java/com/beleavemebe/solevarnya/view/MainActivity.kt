@@ -88,6 +88,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ListUpdateCallba
                 setOnItemClickListener { _, _, position, _ ->
                     val selectedDataSource = optionsArray[position]
                     viewModel.onDataSourceChanged(selectedDataSource)
+                    supportActionBar?.title = getString(selectedDataSource.titleResId)
                 }
             }
     }
