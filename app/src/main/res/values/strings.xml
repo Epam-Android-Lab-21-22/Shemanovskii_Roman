@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">solevarnya</string>
+    <string name="app_name">Storage app</string>
+    <string name="note_source">Note source</string>
+
+    <string name="shared_preferences">Shared Preferences</string>
+    <string name="internal_storage">Internal Storage</string>
+    <string name="external_storage">External Storage</string>
+    <string name="room_database">Room Database</string>
+    <string name="choose_data_source">Choose data source</string>
+    <string name="source_unavailable">Source unavailable</string>
+    <string name="source_corrupted">Source is corrupted</string>
+    <string name="new_note">Add new note</string>
 </resources>
