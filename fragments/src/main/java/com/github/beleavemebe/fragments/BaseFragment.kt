@@ -1,4 +1,4 @@
-package com.beleavemebe.solevarnya
+package com.github.beleavemebe.fragments
 
 import android.os.Bundle
 import android.view.View

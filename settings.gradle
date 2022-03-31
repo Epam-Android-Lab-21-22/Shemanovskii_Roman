@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "solevarnya"
 include ':app'
+include ':fragments'
