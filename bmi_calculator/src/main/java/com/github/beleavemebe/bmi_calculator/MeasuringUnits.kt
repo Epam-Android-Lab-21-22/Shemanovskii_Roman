@@ -1,4 +1,4 @@
-package com.beleavemebe.solevarnya
+package com.github.beleavemebe.bmi_calculator
 
 sealed class HeightUnit(
     private val toMetersFactor: Double

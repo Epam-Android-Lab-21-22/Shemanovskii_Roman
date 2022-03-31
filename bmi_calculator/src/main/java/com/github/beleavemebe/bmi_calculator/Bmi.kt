@@ -1,4 +1,4 @@
-package com.beleavemebe.solevarnya
+package com.github.beleavemebe.bmi_calculator
 
 import androidx.annotation.StringRes
 import kotlin.math.pow
