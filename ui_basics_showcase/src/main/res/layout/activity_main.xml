@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/cl_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_gradient"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_default"
+                android:layout_marginTop="@dimen/margin_default">
+
+                <EditText
+                    android:id="@+id/et_username"
+                    style="@style/TextAppearance.MaterialComponents.Headline4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:maxLength="12"
+                    android:text="Username"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/comma"
+                    style="@style/TextAppearance.MaterialComponents.Headline4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=","
+                    android:textColor="?attr/colorOnPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/et_username"
+                    app:layout_constraintStart_toEndOf="@+id/et_username" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_greeting"
+                    style="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="@string/good_evening"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/et_username"
+                    app:layout_constraintTop_toBottomOf="@+id/et_username" />
+
+                <ImageButton
+                    android:id="@+id/btn_edit"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_margin="@dimen/margin_small_plus"
+                    android:background="?attr/selectableItemBackground"
+                    android:scaleX="1.25"
+                    android:scaleY="1.25"
+                    android:src="@drawable/ic_edit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="?attr/colorOnPrimary" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView style="@style/ShapeAppearanceOverlay.StoryCardView">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            style="@style/ShapeAppearanceOverlay.StoryImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/rubles" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.StoryTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/your_november_spendings" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView style="@style/ShapeAppearanceOverlay.StoryCardView">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            style="@style/ShapeAppearanceOverlay.StoryImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/cv_story_height"
+                            android:src="@drawable/nizhny" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.StoryTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/welcome_to_nizhny" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView style="@style/ShapeAppearanceOverlay.StoryCardView">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            style="@style/ShapeAppearanceOverlay.StoryImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/cv_story_height"
+                            android:src="@drawable/stonks" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.StoryTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/a_guide_to_stonks" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView style="@style/ShapeAppearanceOverlay.StoryCardView">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            style="@style/ShapeAppearanceOverlay.StoryImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/cv_story_height"
+                            android:src="@drawable/modern_art" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.StoryTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about_modern_art" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_random_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_default_plus">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_random_info_1"
+                    style="@style/CardView.RandomInfoCardView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cv_random_info_2"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_small">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/december_spendings"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_december_spendings"
+                            style="@style/TextAppearance.Balance"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:text="12 035 ₽" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_random_info_2"
+                    style="@style/CardView.RandomInfoCardView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cv_random_info_1"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_small">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/december_cashback"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_december_cashback"
+                            style="@style/TextAppearance.Balance"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:text="1 348 ₽" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_default_negative"
+            app:cardCornerRadius="@dimen/margin_default">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_default"
+                    android:paddingVertical="@dimen/margin_small_plus"
+                    android:text="@string/your_cards"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_card_1"
+                    style="@style/CardView.BankCard">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/margin_default_plus">
+
+                        <ImageView
+                            android:id="@+id/iv_card_1"
+                            android:layout_width="32dp"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="@dimen/margin_small_plus"
+                            android:src="@drawable/ic_credit_card"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_card_balance_1"
+                            app:layout_constraintEnd_toStartOf="@id/tv_card_title_1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_card_title_1" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_card_title_1"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/debit_card_1"
+                            app:layout_constraintBottom_toTopOf="@+id/tv_card_balance_1"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_card_numbers_1"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@id/iv_card_1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_chainStyle="packed" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_card_balance_1"
+                            style="@style/TextAppearance.Balance"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_card_title_1"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@+id/tv_card_title_1"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_card_title_1"
+                            tools:text="120 687 ₽" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_card_numbers_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="**** 5536" />
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:id="@+id/materialDivider"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_card_2"
+                    style="@style/CardView.BankCard">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/margin_default_plus">
+
+                        <ImageView
+                            android:id="@+id/iv_card_2"
+                            android:layout_width="32dp"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="@dimen/margin_small_plus"
+                            android:src="@drawable/ic_credit_card"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_card_balance_2"
+                            app:layout_constraintEnd_toStartOf="@id/tv_card_title_2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_card_title_2" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_card_title_2"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/debit_card_2"
+                            app:layout_constraintBottom_toTopOf="@+id/tv_card_balance_2"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_card_numbers_2"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@id/iv_card_2"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_chainStyle="packed" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_card_balance_2"
+                            style="@style/TextAppearance.Balance"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_card_title_2"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@+id/tv_card_title_2"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_card_title_2"
+                            tools:text="20 143 ₽" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_card_numbers_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="**** 1804" />
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_card_3"
+                    style="@style/CardView.BankCard">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/margin_default_plus">
+
+                        <ImageView
+                            android:id="@+id/iv_card_3"
+                            android:layout_width="32dp"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="@dimen/margin_small_plus"
+                            android:src="@drawable/ic_credit_card"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_card_balance_3"
+                            app:layout_constraintEnd_toStartOf="@id/tv_card_title_3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_card_title_3" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_card_title_3"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/credit_card"
+                            app:layout_constraintBottom_toTopOf="@+id/tv_card_balance_3"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_card_numbers_3"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@id/iv_card_3"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_chainStyle="packed" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_card_balance_3"
+                            style="@style/TextAppearance.Balance"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_card_title_3"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@+id/tv_card_title_3"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_card_title_3"
+                            tools:text="54 297 ₽" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_card_numbers_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="**** 9138" />
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_card_4"
+                    style="@style/CardView.BankCard">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/margin_default_plus">
+
+                        <ImageView
+                            android:id="@+id/iv_card_4"
+                            android:layout_width="32dp"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="@dimen/margin_small_plus"
+                            android:paddingVertical="6dp"
+                            android:src="@drawable/ic_money_bag"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_card_balance_4"
+                            app:layout_constraintEnd_toStartOf="@id/tv_card_title_4"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_card_title_4" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_card_title_4"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/savings_account"
+                            app:layout_constraintBottom_toTopOf="@+id/tv_card_balance_4"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@id/iv_card_4"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_chainStyle="packed" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_card_balance_4"
+                            style="@style/TextAppearance.Balance"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_card_title_4"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@+id/tv_card_title_4"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_card_title_4"
+                            tools:text="792 358 ₽" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_new_card_or_account"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginHorizontal="@dimen/margin_default_plus"
+                    android:background="@null"
+                    android:text="@string/new_card_or_account"
+                    android:textAllCaps="false"
+                    app:cornerRadius="10dp"
+                    app:icon="@drawable/ic_add" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_default"
+                    android:paddingVertical="@dimen/margin_small_plus"
+                    android:text="@string/app_stats"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_clicks_stats"
+                    style="@style/CardView.BankCard">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/margin_default_plus">
+
+                        <ImageView
+                            android:id="@+id/iv_cursor"
+                            android:layout_width="32dp"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="@dimen/margin_small_plus"
+                            android:paddingVertical="10dp"
+                            android:src="@drawable/ic_cursor"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_click_counter"
+                            app:layout_constraintEnd_toStartOf="@id/tv_click_counter_title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_click_counter_title" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_click_counter_title"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/clicks_recorded"
+                            app:layout_constraintBottom_toTopOf="@+id/tv_click_counter"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@id/iv_cursor"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_chainStyle="packed" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_click_counter"
+                            style="@style/TextAppearance.Balance"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_click_counter_title"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@+id/tv_click_counter_title"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_click_counter_title"
+                            tools:text="112" />
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_chars_stats"
+                    style="@style/CardView.BankCard">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/margin_default_plus">
+
+                        <ImageView
+                            android:id="@+id/iv_text"
+                            android:layout_width="32dp"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="@dimen/margin_small_plus"
+                            android:src="@drawable/ic_text"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_chars_entered"
+                            app:layout_constraintEnd_toStartOf="@id/tv_chars_entered_title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_chars_entered_title" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_chars_entered_title"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/characters_entered"
+                            app:layout_constraintBottom_toTopOf="@+id/tv_chars_entered"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@id/iv_text"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_chainStyle="packed" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_chars_entered"
+                            style="@style/TextAppearance.Balance"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_chars_entered_title"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@+id/tv_chars_entered_title"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_chars_entered_title"
+                            tools:text="1024" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</ScrollView>
