@@ -1,4 +1,4 @@
-package com.beleavemebe.solevarnya
+package com.github.beleavemebe.app_navigation
 
 import android.app.Application
 import android.content.Context

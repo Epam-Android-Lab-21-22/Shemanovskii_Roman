@@ -1,4 +1,4 @@
-package com.beleavemebe.solevarnya
+package com.github.beleavemebe.app_navigation
 
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -17,7 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.beleavemebe.solevarnya.databinding.ActivityFeatureBinding
+import com.github.beleavemebe.app_navigation.databinding.ActivityFeatureBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlin.concurrent.thread
 

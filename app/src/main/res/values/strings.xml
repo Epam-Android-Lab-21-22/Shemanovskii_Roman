@@ -1,15 +1,3 @@
 <resources>
-    <string name="app_name">MVI Permissions</string>
-    <string name="network_status_unknown">Network status is unknown smh</string>
-    <string name="network_status_no_network">No network</string>
-    <string name="network_status_available">Network is available</string>
-    <string name="disconnected">Disconnected from the network</string>
-    <string name="proceed">Proceed</string>
-    <string name="rationale">Rationale</string>
-    <string name="rationale_msg">We really need this permission</string>
-    <string name="ok">OK</string>
-    <string name="use_feature">Use feature</string>
-    <string name="invert_colors">Invert colors</string>
-    <string name="already_inverted">Already inverted!</string>
-    <string name="respect">We respect your decision</string>
+    <string name="app_name">solevarnya</string>
 </resources>
