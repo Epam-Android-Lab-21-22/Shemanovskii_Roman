@@ -1,4 +1,4 @@
-package com.beleavemebe.solevarnya
+package com.github.beleavemebe.ui_basics_showcase
 
 import androidx.annotation.IdRes
 import androidx.lifecycle.LiveData
