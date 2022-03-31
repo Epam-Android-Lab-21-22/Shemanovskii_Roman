@@ -9,3 +9,4 @@ dependencyResolutionManagement {
 rootProject.name = "solevarnya"
 include ':app'
 include ':bmi_calculator'
+include ':ui_basics_showcase'
